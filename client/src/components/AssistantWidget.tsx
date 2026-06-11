@@ -9,7 +9,7 @@ interface ChatMessage {
 const WELCOME: ChatMessage = {
   role: "assistant",
   content:
-    "Benvenuto, sono l'Assistente REVISORE. Posso aiutarti su strutture ispezionate, punteggi live, targhe e abbonamenti, o spiegarti come funziona la piattaforma. Cosa vuoi sapere?",
+    "Benvenuto, sono KHARA, l'intelligenza artificiale di REVISORE. Conosco ogni struttura ispezionata, i punteggi live, le targhe e gli abbonamenti. Cosa vuoi sapere?",
 };
 
 const SUGGESTIONS = [
@@ -74,7 +74,7 @@ export default function AssistantWidget() {
       {/* Pulsante flottante */}
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Apri assistente"
+        aria-label="Parla con KHARA"
         className="fixed bottom-6 right-6 z-[70] w-14 h-14 rounded-full bg-[#A8842C] text-white shadow-[0_0_24px_rgba(201,168,76,0.5)] hover:bg-[#8F6F25] transition-colors flex items-center justify-center"
       >
         {open ? (
@@ -98,9 +98,9 @@ export default function AssistantWidget() {
           <div className="px-5 py-4 border-b border-black/10 flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <div>
-              <p className="font-brand text-lg tracking-[3px] text-[#141414] leading-none">ASSISTENTE REVISORE</p>
+              <p className="font-serif font-semibold text-xl tracking-[2px] text-[#141414] leading-none">KHARA</p>
               <p className="text-[10px] uppercase tracking-widest text-[#141414]/40 mt-1">
-                Conosce strutture, punteggi e targhe
+                L'intelligenza artificiale di REVISORE
               </p>
             </div>
           </div>

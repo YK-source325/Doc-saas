@@ -59,8 +59,8 @@ export default function Home() {
             </h1>
 
             <p className="mt-8 max-w-xl text-base sm:text-lg text-[#141414]/55 leading-relaxed">
-              Ispezioni professionali con metodologia UNI 11312, un'intelligenza artificiale che
-              vigila sui punteggi in tempo reale, e una targa che vale solo finché il punteggio la
+              Ispezioni professionali con metodologia UNI 11312, KHARA — l'intelligenza artificiale
+              che vigila sui punteggi in tempo reale, e una targa che vale solo finché il punteggio la
               difende.
             </p>
 
@@ -82,7 +82,7 @@ export default function Home() {
               <input
                 value={aiQuestion}
                 onChange={(e) => setAiQuestion(e.target.value)}
-                placeholder="Chiedi all'intelligenza REVISORE: la migliore struttura di Napoli?"
+                placeholder="Chiedi a KHARA: qual è la migliore struttura di Napoli?"
                 className="flex-1 bg-transparent px-2 py-4 text-sm text-[#141414] placeholder:text-[#141414]/35 focus:outline-none"
               />
               <button
