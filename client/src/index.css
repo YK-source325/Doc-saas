@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #060606;
+  color: #f0eadb;
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.gold-grid {
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slider valutazione nel design system */
+input[type="range"].gold-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 9999px;
+  outline: none;
+}
+input[type="range"].gold-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #c9a84c;
+  border: 2px solid #060606;
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
+  cursor: pointer;
+}
+input[type="range"].gold-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #c9a84c;
+  border: 2px solid #060606;
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
+  cursor: pointer;
+}
+
+/* Animazioni scene cinematiche */
+@keyframes cine-fade {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes cine-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+@keyframes cine-glove {
+  0%   { transform: translateX(-40px); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateX(40px); opacity: 1; }
+}
+@keyframes cine-line {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes cine-drive {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(120%); }
+}
+.cine-fade  { animation: cine-fade 1.2s ease both; }
+.cine-zoom  { animation: cine-zoom 6s ease both; }
+.cine-glove { animation: cine-glove 4s ease both; }
+.cine-line  { animation: cine-line 2.5s ease both; }
+.cine-drive { animation: cine-drive 6s linear both; }
+.cine-delay-1 { animation-delay: 0.4s; }
+.cine-delay-2 { animation-delay: 0.9s; }
+.cine-delay-3 { animation-delay: 1.5s; }
+.cine-delay-4 { animation-delay: 2.2s; }

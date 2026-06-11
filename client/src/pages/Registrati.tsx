@@ -1,0 +1,102 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { isAxiosError } from "axios";
+import { useAuth } from "../context/AuthContext";
+import { inputClass } from "./Login";
+
+export default function Registrati() {
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [pending, setPending] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    if (password.length < 8) {
+      setError("La password deve avere almeno 8 caratteri.");
+      return;
+    }
+    setPending(true);
+    try {
+      await register(email, password, name);
+      navigate("/");
+    } catch (err) {
+      setError(
+        isAxiosError(err) && err.response?.status === 409
+          ? "Questa email è già registrata."
+          : "Registrazione non riuscita. Riprova."
+      );
+    } finally {
+      setPending(false);
+    }
+  };
+
+  return (
+    <div className="gold-grid min-h-[80vh] flex items-center justify-center px-4 py-20">
+      <div className="w-full max-w-md bg-[#0a0a0a] border border-[#C9A84C]/20 p-10">
+        <h1 className="font-brand text-4xl text-[#DCBD6B] tracking-widest text-center">REGISTRATI</h1>
+        <p className="mt-2 font-serif italic text-center text-[#F0EADB]/60">
+          Unisciti alla community e valuta le strutture certificate.
+        </p>
+        <form onSubmit={submit} className="mt-8 space-y-5">
+          <div>
+            <label className="text-xs uppercase tracking-widest text-[#F0EADB]/60">Nome e cognome</label>
+            <input
+              type="text"
+              required
+              minLength={2}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={`mt-2 ${inputClass}`}
+              autoComplete="name"
+            />
+          </div>
+          <div>
+            <label className="text-xs uppercase tracking-widest text-[#F0EADB]/60">Email</label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`mt-2 ${inputClass}`}
+              autoComplete="email"
+            />
+          </div>
+          <div>
+            <label className="text-xs uppercase tracking-widest text-[#F0EADB]/60">
+              Password (min 8 caratteri)
+            </label>
+            <input
+              type="password"
+              required
+              minLength={8}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={`mt-2 ${inputClass}`}
+              autoComplete="new-password"
+            />
+          </div>
+          {error && <p className="text-sm text-[#ef4444]">{error}</p>}
+          <button
+            type="submit"
+            disabled={pending}
+            className="w-full px-8 py-3 bg-[#C9A84C] text-black font-bold uppercase tracking-widest hover:bg-[#DCBD6B] transition-colors disabled:opacity-50"
+          >
+            {pending ? "Registrazione in corso..." : "Crea Account"}
+          </button>
+        </form>
+        <p className="mt-6 text-center text-sm text-[#F0EADB]/50">
+          Hai già un account?{" "}
+          <Link to="/login" className="text-[#C9A84C] hover:text-[#DCBD6B] uppercase tracking-widest text-xs">
+            Accedi
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
