@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDashboardStats, useLeaderboard } from "../api/hooks";
+import { useAuth } from "../context/AuthContext";
 import AnimatedCounter from "../components/AnimatedCounter";
 import FadeInSection from "../components/FadeInSection";
 import StatusBadge from "../components/StatusBadge";
@@ -21,6 +22,7 @@ const LEVELS = [
   { num: "III", title: "Premium", desc: "Hotel 5 stelle, ristoranti Michelin, resort, SPA.", note: "Episodi 25+" },
 ];
 
+// Proiezione economica — visibile solo a developer e partner
 const PROJECTION = [
   { year: "2026–27", members: "0 – 20.000", revenue: "5.000 – 25.000 €", result: "Investimento", positive: false },
   { year: "2027–28", members: "20.000 – 80.000", revenue: "40.000 – 100.000 €", result: "+10k / +50k €", positive: true },
@@ -30,10 +32,14 @@ const PROJECTION = [
 ];
 
 export default function Home() {
+  const { user } = useAuth();
   const stats = useDashboardStats();
   const leaderboard = useLeaderboard();
   const navigate = useNavigate();
   const [aiQuestion, setAiQuestion] = useState("");
+
+  // Proiezione visibile solo a developer/partner — non agli utenti pubblici
+  const showProjection = user?.role === "developer" || user?.role === "partner";
 
   return (
     <div>
@@ -259,44 +265,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROIEZIONE ECONOMICA */}
-      <section className="py-28 px-6 bg-white border-t border-black/10">
-        <div className="max-w-6xl mx-auto">
-          <FadeInSection>
-            <p className="text-[11px] uppercase tracking-[4px] text-[#A8842C]">La visione</p>
-            <h2 className="mt-4 font-serif font-semibold text-4xl sm:text-5xl text-[#141414]">
-              Cinque anni di crescita
-            </h2>
-          </FadeInSection>
-          <FadeInSection className="mt-12">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left">
-                <thead>
-                  <tr className="text-[10px] uppercase tracking-[2px] text-[#141414]/35 border-b border-black/15">
-                    <th className="py-4 pr-4 font-medium">Anno</th>
-                    <th className="py-4 pr-4 font-medium">Iscritti</th>
-                    <th className="py-4 pr-4 font-medium">Ricavi annui</th>
-                    <th className="py-4 font-medium">Risultato</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {PROJECTION.map((row) => (
-                    <tr key={row.year} className="border-b border-black/10 hover:bg-black/[0.03] transition-colors">
-                      <td className="py-5 pr-4 font-serif font-semibold text-xl text-[#141414]">{row.year}</td>
-                      <td className="py-5 pr-4 text-sm text-[#141414]/60">{row.members}</td>
-                      <td className="py-5 pr-4 text-sm text-[#141414]/60">{row.revenue}</td>
-                      <td className={`py-5 text-sm font-semibold ${row.positive ? "text-[#22c55e]" : "text-[#141414]/50"}`}>
-                        {row.result}
-                      </td>
+      {/* PROIEZIONE ECONOMICA — solo developer e partner */}
+      {showProjection && (
+        <section className="py-28 px-6 bg-white border-t border-black/10">
+          <div className="max-w-6xl mx-auto">
+            <FadeInSection>
+              <div className="flex items-center gap-3 mb-2">
+                <p className="text-[11px] uppercase tracking-[4px] text-[#A8842C]">La visione</p>
+                <span className="px-2 py-0.5 border border-[#A8842C]/40 text-[9px] tracking-[2px] uppercase text-[#A8842C]/70">
+                  {user?.role === "developer" ? "Sviluppatore" : "Partner"}
+                </span>
+              </div>
+              <h2 className="mt-2 font-serif font-semibold text-4xl sm:text-5xl text-[#141414]">
+                Cinque anni di crescita
+              </h2>
+            </FadeInSection>
+            <FadeInSection className="mt-12">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="text-[10px] uppercase tracking-[2px] text-[#141414]/35 border-b border-black/15">
+                      <th className="py-4 pr-4 font-medium">Anno</th>
+                      <th className="py-4 pr-4 font-medium">Iscritti</th>
+                      <th className="py-4 pr-4 font-medium">Ricavi annui</th>
+                      <th className="py-4 font-medium">Risultato</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </FadeInSection>
+                  </thead>
+                  <tbody>
+                    {PROJECTION.map((row) => (
+                      <tr
+                        key={row.year}
+                        className="border-b border-black/10 hover:bg-black/[0.03] transition-colors"
+                      >
+                        <td className="py-5 pr-4 font-serif font-semibold text-xl text-[#141414]">
+                          {row.year}
+                        </td>
+                        <td className="py-5 pr-4 text-sm text-[#141414]/60">{row.members}</td>
+                        <td className="py-5 pr-4 text-sm text-[#141414]/60">{row.revenue}</td>
+                        <td className={`py-5 text-sm font-semibold ${row.positive ? "text-[#22c55e]" : "text-[#141414]/50"}`}>
+                          {row.result}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </FadeInSection>
 
-          <FadeInSection className="mt-20 text-center">
-            <p className="font-serif italic text-2xl sm:text-3xl text-[#141414]/70 max-w-2xl mx-auto leading-relaxed">
+            <FadeInSection className="mt-20 text-center">
+              <p className="font-serif italic text-2xl sm:text-3xl text-[#141414]/70 max-w-2xl mx-auto leading-relaxed">
+                «La fiducia non si compra con le stelle.
+                <br />
+                Si conquista con le verifiche.»
+              </p>
+              <p className="mt-4 text-[11px] uppercase tracking-[3px] text-[#A8842C]">
+                Yevhen Khara — Fondatore
+              </p>
+            </FadeInSection>
+          </div>
+        </section>
+      )}
+
+      {/* CITAZIONE per utenti pubblici (sostituisce la sezione proiezione) */}
+      {!showProjection && (
+        <section className="py-20 px-6 bg-white border-t border-black/10">
+          <FadeInSection className="max-w-2xl mx-auto text-center">
+            <p className="font-serif italic text-2xl sm:text-3xl text-[#141414]/70 leading-relaxed">
               «La fiducia non si compra con le stelle.
               <br />
               Si conquista con le verifiche.»
@@ -305,8 +339,8 @@ export default function Home() {
               Yevhen Khara — Fondatore
             </p>
           </FadeInSection>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }

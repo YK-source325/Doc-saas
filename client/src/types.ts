@@ -11,6 +11,8 @@ export interface Place {
   plaqueStatus: "active" | "warning" | "at_risk" | "revoked";
   plaqueIssuedAt: string | null;
   imageUrl: string | null;
+  lat: number | null;
+  lng: number | null;
 }
 
 export interface EnrichedPlace extends Place {
@@ -26,6 +28,15 @@ export interface CommunityRating {
   comment: string | null;
   authorName: string;
   createdAt: string;
+  isVerified: boolean;
+  isAnonymous: boolean;
+}
+
+export interface ScoreHistoryEntry {
+  id: number;
+  placeId: number;
+  finalScore: number;
+  recordedAt: string;
 }
 
 export interface PlaceDetail extends EnrichedPlace {

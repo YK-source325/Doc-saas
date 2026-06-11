@@ -14,6 +14,7 @@ import type {
   Place,
   PlaceDetail,
   PlaqueAlert,
+  ScoreHistoryEntry,
   User,
 } from "../types";
 
@@ -21,6 +22,8 @@ export interface PlaceFilters {
   type?: string;
   city?: string;
   status?: string;
+  sort?: "score_desc" | "score_asc" | "name_asc" | "recent";
+  minScore?: number;
 }
 
 export function usePlaces(filters?: PlaceFilters) {
@@ -66,13 +69,35 @@ export function useRatings(id: number) {
   });
 }
 
+export function useScoreHistory(id: number) {
+  return useQuery({
+    queryKey: ["score-history", id],
+    queryFn: async () => {
+      const { data } = await api.get<ScoreHistoryEntry[]>(`/places/${id}/score-history`);
+      return data;
+    },
+    enabled: Number.isFinite(id),
+  });
+}
+
 export function usePostRating() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (payload: { placeId: number; score: number; comment?: string }) => {
+    mutationFn: async (payload: {
+      placeId: number;
+      score: number;
+      comment?: string;
+      displayName?: string;
+      isAnonymous?: boolean;
+    }) => {
       const { data } = await api.post<CommunityRating>(
         `/places/${payload.placeId}/ratings`,
-        { score: payload.score, comment: payload.comment }
+        {
+          score: payload.score,
+          comment: payload.comment,
+          displayName: payload.displayName,
+          isAnonymous: payload.isAnonymous ?? false,
+        }
       );
       return data;
     },
@@ -80,6 +105,7 @@ export function usePostRating() {
       queryClient.invalidateQueries({ queryKey: ["place", vars.placeId] });
       queryClient.invalidateQueries({ queryKey: ["live-score", vars.placeId] });
       queryClient.invalidateQueries({ queryKey: ["ratings", vars.placeId] });
+      queryClient.invalidateQueries({ queryKey: ["score-history", vars.placeId] });
       queryClient.invalidateQueries({ queryKey: ["places"] });
     },
   });
@@ -144,6 +170,8 @@ export interface PlaceInput {
   plaqueStatus?: string;
   plaqueIssuedAt?: string | null;
   imageUrl?: string | null;
+  lat?: number | null;
+  lng?: number | null;
 }
 
 export function useCreatePlace() {
