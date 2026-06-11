@@ -4,7 +4,7 @@ import authRouter from "./routes/auth.js";
 import placesRouter from "./routes/places.js";
 import dashboardRouter from "./routes/dashboard.js";
 import partnerRouter from "./routes/partner.js";
-import setupRouter from "./routes/setup.js";
+import setupRouter, { ensureDatabaseReady } from "./routes/setup.js";
 import subscriptionsRouter from "./routes/subscriptions.js";
 import accountRouter from "./routes/account.js";
 import assistantRouter from "./routes/assistant.js";
@@ -18,6 +18,11 @@ app.use(cookieParser());
 
 app.get("/api/healthz", (_req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+// Il database si prepara da solo alla prima richiesta (tabelle + dati demo)
+app.use("/api", (_req, _res, next) => {
+  ensureDatabaseReady().then(() => next(), next);
 });
 
 app.use("/api/setup", setupRouter);
