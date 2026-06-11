@@ -17,7 +17,7 @@ export default function ScoreGauge({ score, size = 120 }: Props) {
     return () => cancelAnimationFrame(frame);
   }, [target]);
 
-  const color = score >= 4.0 ? "#C9A84C" : score >= 3.0 ? "#f59e0b" : "#ef4444";
+  const color = score >= 4.0 ? "#A8842C" : score >= 3.0 ? "#f59e0b" : "#ef4444";
 
   return (
     <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
@@ -27,7 +27,7 @@ export default function ScoreGauge({ score, size = 120 }: Props) {
           cy={size / 2}
           r={r}
           fill="none"
-          stroke="#1a1a1a"
+          stroke="#E8E2D6"
           strokeWidth={strokeWidth}
         />
         <circle
@@ -44,7 +44,7 @@ export default function ScoreGauge({ score, size = 120 }: Props) {
         />
       </svg>
       <span
-        className="absolute font-brand text-[#F0EADB]"
+        className="absolute font-brand text-[#141414]"
         style={{ fontSize: size / 3.5 }}
       >
         {score.toFixed(2)}

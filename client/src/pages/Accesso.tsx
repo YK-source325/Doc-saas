@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import type { User } from "../types";
 
 const inputClass =
-  "w-full bg-[#060606] border border-white/15 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
+  "w-full bg-[#FAF8F4] border border-black/15 px-4 py-3 text-sm text-[#141414] focus:border-[#A8842C] focus:outline-none";
 
 const AREAS = [
   { title: "UTENTI", desc: "Valuta le strutture e segui i punteggi live dal tuo account personale." },
@@ -56,20 +56,20 @@ export default function Accesso() {
 
   return (
     <div className="gold-grid min-h-[85vh] flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 border border-white/10 bg-[#0a0a0a]">
+      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 border border-black/10 bg-white">
         {/* Pannello istituzionale */}
-        <div className="hidden lg:flex flex-col justify-center items-center gap-6 p-12 border-r border-white/10 bg-[#060606]">
-          <p className="font-serif font-semibold text-4xl tracking-[0.18em] text-white">
-            REVISORE<span className="text-[#C9A84C]">.</span>
+        <div className="hidden lg:flex flex-col justify-center items-center gap-6 p-12 border-r border-black/10 bg-[#FAF8F4]">
+          <p className="font-serif font-semibold text-4xl tracking-[0.18em] text-[#141414]">
+            REVISORE<span className="text-[#A8842C]">.</span>
           </p>
-          <p className="text-[10px] uppercase tracking-[4px] text-[#C9A84C]">
+          <p className="text-[10px] uppercase tracking-[4px] text-[#A8842C]">
             Un accesso unico, tre mondi
           </p>
           <div className="space-y-5 mt-2">
             {AREAS.map((a) => (
               <div key={a.title}>
-                <p className="text-xs font-bold tracking-widest text-white">{a.title}</p>
-                <p className="mt-1 font-serif italic text-sm text-[#F0EADB]/60">{a.desc}</p>
+                <p className="text-xs font-bold tracking-widest text-[#141414]">{a.title}</p>
+                <p className="mt-1 font-serif italic text-sm text-[#141414]/60">{a.desc}</p>
               </div>
             ))}
           </div>
@@ -77,13 +77,13 @@ export default function Accesso() {
 
         {/* Form */}
         <div className="p-8 sm:p-12">
-          <div className="flex border border-white/15">
+          <div className="flex border border-black/15">
             {(["login", "register"] as const).map((m) => (
               <button
                 key={m}
                 onClick={() => { setMode(m); setError(""); }}
                 className={`flex-1 py-3 text-xs font-bold uppercase tracking-widest transition-colors ${
-                  mode === m ? "bg-white text-black" : "text-[#F0EADB]/60 hover:text-white"
+                  mode === m ? "bg-[#141414] text-white" : "text-[#141414]/60 hover:text-[#141414]"
                 }`}
               >
                 {m === "login" ? "Accedi" : "Registrati"}
@@ -94,7 +94,7 @@ export default function Accesso() {
           <form onSubmit={submit} className="mt-8 space-y-5">
             {mode === "register" && (
               <div>
-                <label className="text-xs uppercase tracking-widest text-[#F0EADB]/60">Nome e cognome</label>
+                <label className="text-xs uppercase tracking-widest text-[#141414]/60">Nome e cognome</label>
                 <input
                   type="text"
                   required
@@ -107,7 +107,7 @@ export default function Accesso() {
               </div>
             )}
             <div>
-              <label className="text-xs uppercase tracking-widest text-[#F0EADB]/60">Email</label>
+              <label className="text-xs uppercase tracking-widest text-[#141414]/60">Email</label>
               <input
                 type="email"
                 required
@@ -118,7 +118,7 @@ export default function Accesso() {
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-widest text-[#F0EADB]/60">
+              <label className="text-xs uppercase tracking-widest text-[#141414]/60">
                 Password{mode === "register" ? " (min 8 caratteri)" : ""}
               </label>
               <input
@@ -135,7 +135,7 @@ export default function Accesso() {
             <button
               type="submit"
               disabled={pending}
-              className="w-full px-8 py-3 bg-white text-black font-bold uppercase tracking-widest hover:bg-[#F0EADB] transition-colors disabled:opacity-50"
+              className="w-full px-8 py-3 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#F0EADB] transition-colors disabled:opacity-50"
             >
               {pending
                 ? "Un istante..."
@@ -144,7 +144,7 @@ export default function Accesso() {
                   : "Crea il Tuo Account"}
             </button>
             {mode === "register" && (
-              <p className="text-[10px] text-[#F0EADB]/40 leading-relaxed">
+              <p className="text-[10px] text-[#141414]/40 leading-relaxed">
                 La registrazione crea un account utente gratuito. Gli accessi partner e sviluppatore
                 vengono assegnati direttamente dal fondatore.
               </p>

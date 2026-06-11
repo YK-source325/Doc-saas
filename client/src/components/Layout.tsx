@@ -7,7 +7,7 @@ import AssistantWidget from "./AssistantWidget";
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   return (
-    <div className="min-h-screen bg-[#060606] text-[#F0EADB] flex flex-col">
+    <div className="min-h-screen bg-[#FAF8F4] text-[#141414] flex flex-col">
       <Navbar />
       <main key={pathname} className="pt-16 flex-1 page-enter">
         {children}

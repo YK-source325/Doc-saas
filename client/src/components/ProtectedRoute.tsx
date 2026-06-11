@@ -18,8 +18,8 @@ export default function ProtectedRoute({ roles, children }: Props) {
   if (!roles.includes(user.role)) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-32 text-center">
-        <h1 className="font-brand text-5xl text-[#DCBD6B]">ACCESSO RISERVATO</h1>
-        <p className="mt-4 font-serif italic text-[#F0EADB]/60">
+        <h1 className="font-brand text-5xl text-[#8F6F25]">ACCESSO RISERVATO</h1>
+        <p className="mt-4 font-serif italic text-[#141414]/60">
           Il tuo account non dispone dei permessi necessari per questa area.
         </p>
       </div>

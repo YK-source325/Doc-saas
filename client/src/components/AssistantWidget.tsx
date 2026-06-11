@@ -29,6 +29,19 @@ export default function AssistantWidget() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, pending, open]);
 
+  // Altri componenti (es. la barra AI nell'hero) possono aprire l'assistente
+  // con una domanda: window.dispatchEvent(new CustomEvent("revisore-ask", { detail: "..." }))
+  const sendRef = useRef<(text: string) => void>(() => {});
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const question = (e as CustomEvent<string>).detail;
+      setOpen(true);
+      if (question) setTimeout(() => sendRef.current(question), 200);
+    };
+    window.addEventListener("revisore-ask", handler);
+    return () => window.removeEventListener("revisore-ask", handler);
+  }, []);
+
   const send = async (text: string) => {
     const question = text.trim();
     if (!question || pending) return;
@@ -54,6 +67,7 @@ export default function AssistantWidget() {
       setPending(false);
     }
   };
+  sendRef.current = send;
 
   return (
     <>
@@ -61,7 +75,7 @@ export default function AssistantWidget() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Apri assistente"
-        className="fixed bottom-6 right-6 z-[70] w-14 h-14 rounded-full bg-[#C9A84C] text-black shadow-[0_0_24px_rgba(201,168,76,0.5)] hover:bg-[#DCBD6B] transition-colors flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-[70] w-14 h-14 rounded-full bg-[#A8842C] text-white shadow-[0_0_24px_rgba(201,168,76,0.5)] hover:bg-[#8F6F25] transition-colors flex items-center justify-center"
       >
         {open ? (
           <svg viewBox="0 0 24 24" className="w-6 h-6" stroke="currentColor" strokeWidth="2.5" fill="none">
@@ -80,12 +94,12 @@ export default function AssistantWidget() {
 
       {/* Pannello chat */}
       {open && (
-        <div className="chat-pop fixed bottom-24 right-4 sm:right-6 z-[70] w-[calc(100vw-2rem)] sm:w-96 max-h-[70vh] flex flex-col bg-[#0A0A0A] border border-white/15 shadow-2xl">
-          <div className="px-5 py-4 border-b border-white/10 flex items-center gap-3">
+        <div className="chat-pop fixed bottom-24 right-4 sm:right-6 z-[70] w-[calc(100vw-2rem)] sm:w-96 max-h-[70vh] flex flex-col bg-white border border-black/15 shadow-2xl">
+          <div className="px-5 py-4 border-b border-black/10 flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <div>
-              <p className="font-brand text-lg tracking-[3px] text-white leading-none">ASSISTENTE REVISORE</p>
-              <p className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 mt-1">
+              <p className="font-brand text-lg tracking-[3px] text-[#141414] leading-none">ASSISTENTE REVISORE</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#141414]/40 mt-1">
                 Conosce strutture, punteggi e targhe
               </p>
             </div>
@@ -97,8 +111,8 @@ export default function AssistantWidget() {
                 <div
                   className={`max-w-[85%] px-4 py-2.5 text-sm leading-relaxed ${
                     m.role === "user"
-                      ? "bg-[#C9A84C] text-black"
-                      : "bg-[#060606] border border-white/10 text-[#F0EADB]/90"
+                      ? "bg-[#A8842C] text-white"
+                      : "bg-[#FAF8F4] border border-black/10 text-[#141414]/90"
                   }`}
                 >
                   {m.content}
@@ -107,10 +121,10 @@ export default function AssistantWidget() {
             ))}
             {pending && (
               <div className="flex justify-start">
-                <div className="bg-[#060606] border border-white/10 px-4 py-3 flex gap-1.5">
-                  <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
-                  <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
-                  <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+                <div className="bg-[#FAF8F4] border border-black/10 px-4 py-3 flex gap-1.5">
+                  <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#A8842C]" />
+                  <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#A8842C]" />
+                  <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#A8842C]" />
                 </div>
               </div>
             )}
@@ -123,7 +137,7 @@ export default function AssistantWidget() {
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="px-3 py-1.5 border border-white/15 text-[#C9A84C] text-xs hover:bg-[#C9A84C]/10 transition-colors"
+                  className="px-3 py-1.5 border border-black/15 text-[#A8842C] text-xs hover:bg-[#A8842C]/10 transition-colors"
                 >
                   {s}
                 </button>
@@ -136,18 +150,18 @@ export default function AssistantWidget() {
               e.preventDefault();
               send(input);
             }}
-            className="p-3 border-t border-white/10 flex gap-2"
+            className="p-3 border-t border-black/10 flex gap-2"
           >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Scrivi la tua domanda..."
-              className="flex-1 bg-[#060606] border border-white/15 px-3 py-2 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
+              className="flex-1 bg-[#FAF8F4] border border-black/15 px-3 py-2 text-sm text-[#141414] focus:border-[#A8842C] focus:outline-none"
             />
             <button
               type="submit"
               disabled={pending || !input.trim()}
-              className="px-4 py-2 bg-[#C9A84C] text-black font-bold text-xs uppercase tracking-widest hover:bg-[#DCBD6B] disabled:opacity-40 transition-colors"
+              className="px-4 py-2 bg-[#A8842C] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#8F6F25] disabled:opacity-40 transition-colors"
             >
               Invia
             </button>

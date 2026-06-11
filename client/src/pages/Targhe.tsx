@@ -20,7 +20,7 @@ const TIERS: Tier[] = [
   {
     name: "REVISORE SILVER",
     range: "SCORE 3.5–3.9",
-    color: "#94a3b8",
+    color: "#6B7686",
     desc: "Struttura di buon livello. Rinnovo annuale 200€.",
     features: [
       "Targa fisica 20×15 cm",
@@ -32,7 +32,7 @@ const TIERS: Tier[] = [
   {
     name: "REVISORE ORO",
     range: "SCORE 4.0–4.7",
-    color: "#C9A84C",
+    color: "#A8842C",
     badge: "PIÙ DIFFUSO",
     desc: "Eccellenza riconosciuta. Rinnovo annuale 350€.",
     features: [
@@ -45,7 +45,7 @@ const TIERS: Tier[] = [
   {
     name: "REVISORE DIAMOND",
     range: "SCORE 4.8+",
-    color: "#e0f2fe",
+    color: "#46647E",
     badge: "ECCELLENZA ASSOLUTA",
     desc: "Il massimo dell'ospitalità italiana. Standard Michelin. Rinnovo 500€.",
     features: [
@@ -65,9 +65,9 @@ const STEPS = [
 ];
 
 function tierOf(score: number): { label: string; color: string } | null {
-  if (score >= 4.8) return { label: "DIAMOND", color: "#e0f2fe" };
-  if (score >= 4.0) return { label: "ORO", color: "#C9A84C" };
-  if (score >= 3.5) return { label: "SILVER", color: "#94a3b8" };
+  if (score >= 4.8) return { label: "DIAMOND", color: "#46647E" };
+  if (score >= 4.0) return { label: "ORO", color: "#A8842C" };
+  if (score >= 3.5) return { label: "SILVER", color: "#6B7686" };
   return null;
 }
 
@@ -80,10 +80,10 @@ export default function Targhe() {
       {/* HERO */}
       <section className="gold-grid py-28 px-4 text-center">
         <FadeInSection>
-          <h1 className="font-serif font-semibold text-6xl sm:text-8xl md:text-9xl text-white leading-none">
+          <h1 className="font-serif font-semibold text-6xl sm:text-8xl md:text-9xl text-[#141414] leading-none">
             LE TARGHE REVISORE
           </h1>
-          <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#F0EADB]/70 max-w-3xl mx-auto">
+          <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#141414]/70 max-w-3xl mx-auto">
             Il riconoscimento dell'eccellenza. Al termine di ogni ispezione positiva, il Revisore
             consegna una targa fisica — il climax emotivo di ogni episodio.
           </p>
@@ -96,14 +96,14 @@ export default function Targhe() {
           {TIERS.map((tier, i) => (
             <FadeInSection key={tier.name} delay={i * 150} className="h-full">
               <div
-                className="relative bg-[#060606] border p-8 lg:p-10 h-full flex flex-col transition-colors"
+                className="relative bg-[#FAF8F4] border p-8 lg:p-10 h-full flex flex-col transition-colors"
                 style={{ borderColor: `${tier.color}4D` }}
                 onMouseEnter={(e) => (e.currentTarget.style.borderColor = `${tier.color}B3`)}
                 onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${tier.color}4D`)}
               >
                 {tier.badge && (
                   <span
-                    className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 border bg-[#060606] text-[10px] font-bold tracking-widest whitespace-nowrap"
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 border bg-[#FAF8F4] text-[10px] font-bold tracking-widest whitespace-nowrap"
                     style={{ borderColor: tier.color, color: tier.color }}
                   >
                     {tier.badge}
@@ -115,9 +115,9 @@ export default function Targhe() {
                 <h2 className="mt-6 font-brand text-3xl tracking-widest text-center" style={{ color: tier.color }}>
                   {tier.name}
                 </h2>
-                <p className="mt-1 text-xs tracking-widest text-center text-[#F0EADB]/50">{tier.range}</p>
-                <p className="mt-4 font-serif italic text-center text-[#F0EADB]/70">{tier.desc}</p>
-                <ul className="mt-8 space-y-3 text-sm text-[#F0EADB]/70">
+                <p className="mt-1 text-xs tracking-widest text-center text-[#141414]/50">{tier.range}</p>
+                <p className="mt-4 font-serif italic text-center text-[#141414]/70">{tier.desc}</p>
+                <ul className="mt-8 space-y-3 text-sm text-[#141414]/70">
                   {tier.features.map((f) => (
                     <li key={f} className="flex gap-3">
                       <span style={{ color: tier.color }}>—</span>
@@ -132,20 +132,20 @@ export default function Targhe() {
       </section>
 
       {/* COME FUNZIONA */}
-      <section className="py-20 px-4 bg-[#0A0A0A] border-y border-white/10">
+      <section className="py-20 px-4 bg-white border-y border-black/10">
         <div className="max-w-5xl mx-auto">
           <FadeInSection className="text-center">
-            <h2 className="font-serif font-semibold text-5xl text-white">Come Funziona</h2>
+            <h2 className="font-serif font-semibold text-5xl text-[#141414]">Come Funziona</h2>
           </FadeInSection>
           <div className="mt-16 relative grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="hidden md:block absolute top-7 left-[16%] right-[16%] border-t border-dashed border-[#C9A84C]/40" />
+            <div className="hidden md:block absolute top-7 left-[16%] right-[16%] border-t border-dashed border-[#A8842C]/40" />
             {STEPS.map((step, i) => (
               <FadeInSection key={step.num} delay={i * 150} className="relative text-center">
-                <span className="relative z-10 inline-flex w-14 h-14 items-center justify-center rounded-full border-2 border-[#C9A84C] bg-[#060606] font-brand text-2xl text-[#C9A84C]">
+                <span className="relative z-10 inline-flex w-14 h-14 items-center justify-center rounded-full border-2 border-[#A8842C] bg-[#FAF8F4] font-brand text-2xl text-[#A8842C]">
                   {step.num}
                 </span>
-                <h3 className="mt-4 uppercase tracking-widest font-bold text-[#F0EADB]">{step.title}</h3>
-                <p className="mt-2 text-sm text-[#F0EADB]/50">{step.desc}</p>
+                <h3 className="mt-4 uppercase tracking-widest font-bold text-[#141414]">{step.title}</h3>
+                <p className="mt-2 text-sm text-[#141414]/50">{step.desc}</p>
               </FadeInSection>
             ))}
           </div>
@@ -156,7 +156,7 @@ export default function Targhe() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <FadeInSection>
-            <h2 className="font-serif font-semibold text-5xl text-white text-center">
+            <h2 className="font-serif font-semibold text-5xl text-[#141414] text-center">
               Strutture Certificate
             </h2>
           </FadeInSection>
@@ -171,7 +171,7 @@ export default function Targhe() {
                     <FadeInSection key={p.id} delay={(i % 3) * 100}>
                       <div
                         onClick={() => navigate(`/places/${p.id}`)}
-                        className="bg-[#0a0a0a] border border-white/10 hover:border-[#C9A84C]/60 p-6 cursor-pointer transition-colors"
+                        className="bg-white border border-black/10 hover:border-[#A8842C]/60 p-6 cursor-pointer transition-colors"
                       >
                         <div className="flex items-center justify-between gap-3">
                           {tier ? (
@@ -189,8 +189,8 @@ export default function Targhe() {
                           <StatusBadge status={p.plaqueStatus} />
                         </div>
                         <h3 className="mt-4 font-serif text-xl">{p.name}</h3>
-                        <p className="text-xs text-[#F0EADB]/50">{p.city}</p>
-                        <p className="mt-3 font-brand text-4xl text-[#DCBD6B]">{p.finalScore.toFixed(2)}</p>
+                        <p className="text-xs text-[#141414]/50">{p.city}</p>
+                        <p className="mt-3 font-brand text-4xl text-[#8F6F25]">{p.finalScore.toFixed(2)}</p>
                       </div>
                     </FadeInSection>
                   );
@@ -204,12 +204,12 @@ export default function Targhe() {
       {/* CTA */}
       <section className="py-20 px-4 text-center">
         <FadeInSection>
-          <h2 className="font-serif italic text-3xl text-[#F0EADB]/80">
+          <h2 className="font-serif italic text-3xl text-[#141414]/80">
             Vuoi ricevere la targa Revisore?
           </h2>
           <a
             href="mailto:info@revisore.it"
-            className="mt-8 inline-block px-8 py-4 border border-[#C9A84C] text-[#C9A84C] uppercase tracking-widest hover:bg-[#C9A84C]/10 transition-colors"
+            className="mt-8 inline-block px-8 py-4 border border-[#A8842C] text-[#A8842C] uppercase tracking-widest hover:bg-[#A8842C]/10 transition-colors"
           >
             Richiedi Ispezione →
           </a>
