@@ -34,7 +34,7 @@ npm install
 npm run dev
 ```
 
-### Produzione
+### Produzione (server proprio)
 
 ```bash
 cd client && npm run build      # genera client/dist
@@ -42,6 +42,22 @@ cd ../server && NODE_ENV=production JWT_SECRET=<segreto-forte> npm start
 ```
 
 Il server Express serve `client/dist` per tutti i path non-API.
+
+### Pubblicazione su Vercel
+
+Il progetto è pronto per Vercel: il frontend viene servito come sito statico e
+le API girano come funzione serverless (`api/index.ts` + `vercel.json`).
+
+1. **Database** — Nel pannello Vercel del progetto: scheda **Storage** →
+   **Create Database** → scegli **Neon** (Postgres, piano gratuito) → collega
+   il database al progetto. Vercel imposta da solo la variabile `DATABASE_URL`.
+2. **Sicurezza** — In **Settings → Environment Variables** aggiungi
+   `JWT_SECRET` con un valore lungo e casuale.
+3. **Redeploy** — Nella scheda **Deployments** premi **Redeploy** sull'ultimo
+   deploy (serve perché le nuove variabili vengano lette).
+4. **Inizializzazione** — Apri una sola volta `https://<tuo-sito>/api/setup`:
+   crea le tabelle e carica strutture e account demo. Richiamarlo di nuovo non
+   fa nulla se il database è già popolato.
 
 ## Account demo (da cambiare in produzione)
 
