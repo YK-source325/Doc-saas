@@ -73,7 +73,7 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#060606]/85 border-b border-[#C9A84C]/15">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#060606]/85 border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link to="/" onClick={() => setOpen(false)}>
           <Logo />
@@ -97,8 +97,8 @@ export default function Navbar() {
                 {user.name.split(" ")[0]}
               </button>
               {accountOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-[#0A0A0A] border border-[#C9A84C]/20 py-2 shadow-xl">
-                  <p className="px-4 py-2 text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/10">
+                <div className="absolute right-0 mt-2 w-56 bg-[#0A0A0A] border border-white/10 py-2 shadow-xl">
+                  <p className="px-4 py-2 text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-white/10">
                     {user.email} — {roleLabel}
                   </p>
                   {accountLinks}
@@ -127,7 +127,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-[#060606]/95 border-t border-[#C9A84C]/10 px-6 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-[#060606]/95 border-t border-white/10 px-6 py-4 flex flex-col gap-4">
           {LINKS.map((l) => (
             <NavLink
               key={l.to}
@@ -139,7 +139,7 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
-          <div className="border-t border-[#C9A84C]/10 pt-4">
+          <div className="border-t border-white/10 pt-4">
             {user ? (
               <div className="-mx-4">{accountLinks}</div>
             ) : (

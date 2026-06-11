@@ -138,7 +138,7 @@ export default function PlaceDetail() {
         </FadeInSection>
 
         <FadeInSection delay={150}>
-          <h2 className="font-brand text-2xl text-white tracking-widest">INFO STRUTTURA</h2>
+          <h2 className="font-serif font-semibold text-2xl text-white">INFO STRUTTURA</h2>
           <dl className="mt-6 space-y-4 text-sm">
             {[
               ["Indirizzo", p.address],
@@ -159,16 +159,16 @@ export default function PlaceDetail() {
 
       {/* VALUTAZIONI COMMUNITY */}
       <FadeInSection className="mt-20">
-        <h2 className="font-brand text-2xl text-white tracking-widest">VALUTAZIONI COMMUNITY</h2>
+        <h2 className="font-serif font-semibold text-2xl text-white">VALUTAZIONI COMMUNITY</h2>
         {p.recentRatings.length === 0 ? (
           <p className="mt-6 font-serif italic text-[#F0EADB]/50">
             Nessuna valutazione ancora. Lascia la prima.
           </p>
         ) : (
-          <ul className="mt-6 divide-y divide-[#C9A84C]/10">
+          <ul className="mt-6 divide-y divide-white/10">
             {p.recentRatings.map((r) => (
               <li key={r.id} className="py-5 flex gap-4">
-                <span className="w-8 h-8 shrink-0 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/30 flex items-center justify-center font-brand text-[#C9A84C]">
+                <span className="w-8 h-8 shrink-0 rounded-full bg-[#C9A84C]/20 border border-white/15 flex items-center justify-center font-brand text-[#C9A84C]">
                   {r.authorName.charAt(0)}
                 </span>
                 <div>
@@ -188,8 +188,8 @@ export default function PlaceDetail() {
 
       {/* FORM VALUTAZIONE */}
       <FadeInSection className="mt-16">
-        <div className="border border-[#C9A84C]/20 bg-[#0a0a0a] p-8">
-          <h2 className="font-brand text-2xl text-white tracking-widest">
+        <div className="border border-white/10 bg-[#0a0a0a] p-8">
+          <h2 className="font-serif font-semibold text-2xl text-white">
             LASCIA LA TUA VALUTAZIONE
           </h2>
           {!user ? (
@@ -228,7 +228,7 @@ export default function PlaceDetail() {
                   value={comment}
                   onChange={(e) => setComment(e.target.value.slice(0, 300))}
                   rows={3}
-                  className="mt-2 w-full bg-[#060606] border border-[#C9A84C]/30 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
+                  className="mt-2 w-full bg-[#060606] border border-white/15 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
                   placeholder="Racconta la tua esperienza..."
                 />
                 <p className="mt-1 text-right text-[10px] text-[#F0EADB]/30">{comment.length}/300</p>

@@ -15,7 +15,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import StatusBadge from "../components/StatusBadge";
 
 const inputClass =
-  "w-full bg-[#060606] border border-[#C9A84C]/30 px-3 py-2 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
+  "w-full bg-[#060606] border border-white/15 px-3 py-2 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
 
 interface FormState {
   name: string;
@@ -91,7 +91,7 @@ function SubscriptionRequests() {
 
   return (
     <FadeInSection className="mt-16">
-      <h2 className="font-brand text-3xl text-white tracking-widest">RICHIESTE DI ABBONAMENTO</h2>
+      <h2 className="font-serif font-semibold text-3xl text-white">RICHIESTE DI ABBONAMENTO</h2>
       {requests.isLoading && <LoadingSpinner />}
       {requests.isError && <ErrorMessage onRetry={() => requests.refetch()} />}
       {requests.data && requests.data.length === 0 && (
@@ -100,10 +100,10 @@ function SubscriptionRequests() {
         </p>
       )}
       {requests.data && requests.data.length > 0 && (
-        <div className="mt-6 overflow-x-auto border border-[#C9A84C]/20 bg-[#0a0a0a]">
+        <div className="mt-6 overflow-x-auto border border-white/10 bg-[#0a0a0a]">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/20">
+              <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-white/10">
                 <th className="px-4 py-3">Struttura</th>
                 <th className="px-4 py-3">Referente</th>
                 <th className="px-4 py-3">Città</th>
@@ -112,7 +112,7 @@ function SubscriptionRequests() {
                 <th className="px-4 py-3">Gestione</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#C9A84C]/10">
+            <tbody className="divide-y divide-white/10">
               {requests.data.map((r) => {
                 const status = SUB_STATUS[r.status] ?? SUB_STATUS.new;
                 return (
@@ -144,7 +144,7 @@ function SubscriptionRequests() {
                       <select
                         value={r.status}
                         onChange={(e) => setStatus.mutate({ id: r.id, status: e.target.value })}
-                        className="bg-[#060606] border border-[#C9A84C]/30 px-2 py-1 text-xs text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
+                        className="bg-[#060606] border border-white/15 px-2 py-1 text-xs text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
                       >
                         <option value="new">Nuova</option>
                         <option value="contacted">Contattata</option>
@@ -245,7 +245,7 @@ export default function Admin() {
         </span>
         <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="font-brand text-5xl sm:text-6xl text-white tracking-widest">
+            <h1 className="font-serif font-semibold text-5xl sm:text-6xl text-white">
               PANNELLO SVILUPPATORE
             </h1>
             <p className="mt-2 font-serif italic text-xl text-[#F0EADB]/60">
@@ -265,10 +265,10 @@ export default function Admin() {
         {places.isLoading && <LoadingSpinner />}
         {places.isError && <ErrorMessage onRetry={() => places.refetch()} />}
         {places.data && (
-          <div className="overflow-x-auto border border-[#C9A84C]/20 bg-[#0a0a0a]">
+          <div className="overflow-x-auto border border-white/10 bg-[#0a0a0a]">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/20">
+                <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-white/10">
                   <th className="px-4 py-3">Struttura</th>
                   <th className="px-4 py-3">Città</th>
                   <th className="px-4 py-3">Score Live</th>
@@ -277,7 +277,7 @@ export default function Admin() {
                   <th className="px-4 py-3 text-right">Azioni</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#C9A84C]/10">
+              <tbody className="divide-y divide-white/10">
                 {places.data.map((p) => (
                   <tr key={p.id} className="hover:bg-[#C9A84C]/5">
                     <td className="px-4 py-3 font-serif text-base">{p.name}</td>
@@ -290,7 +290,7 @@ export default function Admin() {
                       <select
                         value={p.plaqueStatus}
                         onChange={(e) => setStatus.mutate({ id: p.id, plaqueStatus: e.target.value })}
-                        className="bg-[#060606] border border-[#C9A84C]/30 px-2 py-1 text-xs text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
+                        className="bg-[#060606] border border-white/15 px-2 py-1 text-xs text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
                       >
                         <option value="active">Attiva</option>
                         <option value="warning">Attenzione</option>
@@ -325,8 +325,8 @@ export default function Admin() {
       {/* MODALE CREA/MODIFICA */}
       {editing && (
         <div className="fixed inset-0 z-[60] bg-[#060606]/90 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-lg bg-[#0a0a0a] border border-[#C9A84C]/30 p-8">
-            <h2 className="font-brand text-2xl text-white tracking-widest">
+          <div className="w-full max-w-lg bg-[#0a0a0a] border border-white/15 p-8">
+            <h2 className="font-serif font-semibold text-2xl text-white">
               {editing === "new" ? "NUOVA STRUTTURA" : `MODIFICA — ${editing.name}`}
             </h2>
             <form onSubmit={submit} className="mt-6 space-y-4">

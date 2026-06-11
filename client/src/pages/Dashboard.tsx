@@ -22,7 +22,7 @@ export default function Dashboard() {
       {/* HEADER */}
       <FadeInSection>
         <div className="flex flex-wrap items-center gap-4">
-          <h1 className="font-brand text-5xl sm:text-6xl text-white tracking-widest">
+          <h1 className="font-serif font-semibold text-5xl sm:text-6xl text-white">
             COMMAND CENTER
           </h1>
           <span className="flex items-center gap-2 px-3 py-1 border border-[#22c55e]/50 rounded-full">
@@ -48,7 +48,7 @@ export default function Dashboard() {
               { label: "ISPEZIONI YTD", value: String(stats.data.inspectionsThisYear), color: "#F0EADB" },
             ].map((kpi, i) => (
               <FadeInSection key={kpi.label} delay={i * 100}>
-                <div className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-6">
+                <div className="bg-[#0a0a0a] border border-white/10 p-6">
                   <p className="font-brand text-5xl" style={{ color: kpi.color }}>
                     {kpi.value}
                   </p>
@@ -84,14 +84,14 @@ export default function Dashboard() {
               {alerts.data && alerts.data.length > 0 && (
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/20">
+                    <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-white/10">
                       <th className="py-2 pr-2">Struttura</th>
                       <th className="py-2 pr-2">Score</th>
                       <th className="py-2 pr-2">Stato</th>
                       <th className="py-2">Scadenza</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#C9A84C]/10">
+                  <tbody className="divide-y divide-white/10">
                     {alerts.data.map((a) => (
                       <tr
                         key={a.id}
@@ -115,20 +115,20 @@ export default function Dashboard() {
 
         {/* LEADERBOARD LIVE */}
         <FadeInSection delay={150}>
-          <div className="border border-[#C9A84C]/20 bg-[#0a0a0a] p-6 h-full">
+          <div className="border border-white/10 bg-[#0a0a0a] p-6 h-full">
             <div className="flex items-center gap-3">
               <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="#C9A84C" strokeWidth="2">
                 <line x1="5" y1="20" x2="5" y2="12" />
                 <line x1="12" y1="20" x2="12" y2="6" />
                 <line x1="19" y1="20" x2="19" y2="14" />
               </svg>
-              <h2 className="font-brand text-2xl text-white tracking-widest">LEADERBOARD LIVE</h2>
+              <h2 className="font-serif font-semibold text-2xl text-white">LEADERBOARD LIVE</h2>
             </div>
             <div className="mt-6">
               {leaderboard.isLoading && <LoadingSpinner />}
               {leaderboard.isError && <ErrorMessage onRetry={() => leaderboard.refetch()} />}
               {leaderboard.data && (
-                <ol className="divide-y divide-[#C9A84C]/10">
+                <ol className="divide-y divide-white/10">
                   {leaderboard.data.map((entry) => {
                     const trend = TREND_ICONS[entry.trend];
                     return (

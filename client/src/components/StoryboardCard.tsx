@@ -10,7 +10,7 @@ export default function StoryboardCard({ title, scenes }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-[#C9A84C]/20 bg-[#0a0a0a]">
+    <div className="border border-white/10 bg-[#0a0a0a]">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#C9A84C]/5 transition-colors"
@@ -21,7 +21,7 @@ export default function StoryboardCard({ title, scenes }: Props) {
         <span className="font-brand text-xl text-[#DCBD6B]">{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div className="px-5 pb-5 divide-y divide-[#C9A84C]/10">
+        <div className="px-5 pb-5 divide-y divide-white/10">
           {scenes.map((s) => (
             <div key={s.num} className="py-4 grid grid-cols-12 gap-4">
               <div className="col-span-12 sm:col-span-1">

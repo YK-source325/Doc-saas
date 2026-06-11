@@ -42,7 +42,7 @@ export default function Account() {
             {user?.name.charAt(0)}
           </span>
           <div>
-            <h1 className="font-brand text-4xl sm:text-5xl text-white tracking-widest">{user?.name}</h1>
+            <h1 className="font-serif font-semibold text-4xl sm:text-5xl text-white">{user?.name}</h1>
             <p className="mt-1 text-sm text-[#F0EADB]/50">{user?.email}</p>
           </div>
         </div>
@@ -50,11 +50,11 @@ export default function Account() {
 
       <FadeInSection className="mt-12">
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-6">
+          <div className="bg-[#0a0a0a] border border-white/10 p-6">
             <p className="font-brand text-5xl text-white">{ratings.data?.length ?? "—"}</p>
             <p className="mt-2 text-[10px] tracking-widest text-[#F0EADB]/40">VALUTAZIONI LASCIATE</p>
           </div>
-          <div className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-6">
+          <div className="bg-[#0a0a0a] border border-white/10 p-6">
             <p className="font-brand text-5xl text-[#C9A84C]">
               {average !== null ? average.toFixed(2) : "—"}
             </p>
@@ -64,11 +64,11 @@ export default function Account() {
       </FadeInSection>
 
       <FadeInSection className="mt-12">
-        <h2 className="font-brand text-2xl text-white tracking-widest">LE MIE VALUTAZIONI</h2>
+        <h2 className="font-serif font-semibold text-2xl text-white">LE MIE VALUTAZIONI</h2>
         {ratings.isLoading && <LoadingSpinner />}
         {ratings.isError && <ErrorMessage onRetry={() => ratings.refetch()} />}
         {ratings.data && ratings.data.length === 0 && (
-          <div className="mt-6 border border-[#C9A84C]/20 bg-[#0a0a0a] p-10 text-center">
+          <div className="mt-6 border border-white/10 bg-[#0a0a0a] p-10 text-center">
             <p className="font-serif italic text-[#F0EADB]/60">
               Non hai ancora valutato nessuna struttura.
             </p>
@@ -81,7 +81,7 @@ export default function Account() {
           </div>
         )}
         {ratings.data && ratings.data.length > 0 && (
-          <ul className="mt-6 divide-y divide-[#C9A84C]/10 border border-[#C9A84C]/20 bg-[#0a0a0a]">
+          <ul className="mt-6 divide-y divide-white/10 border border-white/10 bg-[#0a0a0a]">
             {ratings.data.map((r) => (
               <li key={r.id} className="p-5 hover:bg-[#C9A84C]/5 transition-colors">
                 <Link to={`/places/${r.placeId}`} className="flex items-center gap-5">

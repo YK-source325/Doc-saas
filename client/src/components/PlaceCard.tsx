@@ -15,7 +15,7 @@ export default function PlaceCard({ place }: { place: EnrichedPlace }) {
   return (
     <div
       onClick={() => navigate(`/places/${place.id}`)}
-      className="bg-[#0a0a0a] border border-[#C9A84C]/20 hover:border-[#C9A84C]/60 p-6 cursor-pointer transition-colors flex flex-col"
+      className="bg-[#0a0a0a] border border-white/10 hover:border-[#C9A84C]/60 p-6 cursor-pointer transition-colors flex flex-col"
     >
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-serif text-xl text-[#F0EADB]">{place.name}</h3>

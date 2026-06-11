@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import type { CineScene } from "../components/CinematicPlayer";
 import {
   AlgorithmVisual,
-  EmblemVisual,
   GloveVisual,
   InspectorVisual,
   PlaqueVisual,
@@ -61,15 +60,12 @@ function TextScene({ kicker, title, subtitle, visual, visualClass = "" }: TextSc
 function LogoScene() {
   return (
     <div className="flex flex-col items-center justify-center text-center px-8 py-16 gap-5">
-      <div className="cine-fade">
-        <EmblemVisual className="w-24 h-24 md:w-32 md:h-32" />
-      </div>
-      <div className="cine-fade cine-delay-1 flex items-baseline">
-        <span className="font-brand text-[90px] md:text-[140px] text-white">R</span>
-        <span className="font-brand text-[60px] md:text-[95px] tracking-[16px] text-white/95">
-          EVISORE
+      <div className="cine-fade cine-delay-1">
+        <span className="font-serif font-semibold text-[64px] md:text-[110px] leading-none tracking-[0.12em] text-white">
+          REVISORE<span className="text-[#C9A84C]">.</span>
         </span>
       </div>
+      <div className="cine-fade cine-delay-2 h-px w-48 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
       <p className="cine-fade cine-delay-3 font-serif italic text-xl md:text-2xl text-[#F0EADB]/70">
         L'eccellenza nell'ospitalità incontra l'intelligenza artificiale.
       </p>

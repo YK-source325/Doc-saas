@@ -1,14 +1,22 @@
-import { EmblemVisual } from "../cinema/visuals";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#C9A84C]/10 py-12 text-center">
-      <div className="flex justify-center mb-4">
-        <EmblemVisual className="w-12 h-12" />
+    <footer className="border-t border-white/10 py-14">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <Logo />
+        <p className="text-[11px] uppercase tracking-[3px] text-[#F0EADB]/40 text-center">
+          Yevhen Khara © 2026 — Certificazione Ospitalità Italiana
+        </p>
+        <a
+          href="mailto:info@revisore.it"
+          className="text-[11px] uppercase tracking-[3px] text-[#C9A84C] hover:text-white transition-colors"
+        >
+          info@revisore.it
+        </a>
       </div>
-      <p className="font-brand text-2xl text-white tracking-[6px]">REVISORE</p>
-      <p className="mt-2 text-xs uppercase tracking-widest text-[#F0EADB]/40">
-        Yevhen Khara © 2026 — Certificazione Ospitalità Italiana
+      <p className="mt-8 text-center text-[10px] tracking-[2px] uppercase text-[#F0EADB]/25 px-6">
+        Versione dimostrativa — strutture, punteggi e valutazioni sono dati di esempio, non reali.
       </p>
     </footer>
   );

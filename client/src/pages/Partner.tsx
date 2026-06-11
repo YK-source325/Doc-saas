@@ -21,7 +21,7 @@ export default function Partner() {
         <span className="px-4 py-1 border border-[#C9A84C]/40 text-[10px] tracking-widest text-[#C9A84C]">
           AREA RISERVATA PARTNER & INVESTITORI
         </span>
-        <h1 className="mt-6 font-brand text-5xl sm:text-7xl text-white tracking-widest">
+        <h1 className="mt-6 font-serif font-semibold text-5xl sm:text-7xl text-white">
           AREA PARTNER
         </h1>
         <p className="mt-3 font-serif italic text-xl text-[#F0EADB]/60 max-w-3xl">
@@ -37,7 +37,7 @@ export default function Partner() {
         <>
           {/* KPI LIVE */}
           <FadeInSection className="mt-12">
-            <h2 className="font-brand text-2xl text-white tracking-widest">KPI LIVE</h2>
+            <h2 className="font-serif font-semibold text-2xl text-white">KPI LIVE</h2>
             <div className="mt-6 grid grid-cols-2 lg:grid-cols-5 gap-4">
               {[
                 { label: "STRUTTURE ISPEZIONATE", value: overview.data.kpi.totalInspected, decimals: 0 },
@@ -46,7 +46,7 @@ export default function Partner() {
                 { label: "VALUTAZIONI COMMUNITY", value: overview.data.kpi.totalCommunityRatings, decimals: 0 },
                 { label: "RICAVO ANNUO TARGHE (€)", value: overview.data.kpi.annualRecurringRevenue, decimals: 0 },
               ].map((kpi) => (
-                <div key={kpi.label} className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-6">
+                <div key={kpi.label} className="bg-[#0a0a0a] border border-white/10 p-6">
                   <p className="font-brand text-4xl text-[#DCBD6B]">
                     <AnimatedCounter value={kpi.value} decimals={kpi.decimals} />
                   </p>
@@ -58,14 +58,14 @@ export default function Partner() {
 
           {/* MODELLO DI RICAVO */}
           <FadeInSection className="mt-16">
-            <h2 className="font-brand text-2xl text-white tracking-widest">MODELLO DI RICAVO</h2>
+            <h2 className="font-serif font-semibold text-2xl text-white">MODELLO DI RICAVO</h2>
             <p className="mt-2 font-serif italic text-[#F0EADB]/60">
               Ogni targa è un abbonamento annuale ricorrente. Tre livelli, tre prezzi.
             </p>
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {overview.data.plaquePricing.map((tier) => (
-                <div key={tier.tier} className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-6 text-center">
-                  <p className="font-brand text-2xl text-white tracking-widest">{tier.tier}</p>
+                <div key={tier.tier} className="bg-[#0a0a0a] border border-white/10 p-6 text-center">
+                  <p className="font-serif font-semibold text-2xl text-white">{tier.tier}</p>
                   <p className="text-xs tracking-widest text-[#F0EADB]/50">{tier.range}</p>
                   <p className="mt-4 font-brand text-5xl text-[#C9A84C]">{tier.annualFee}€</p>
                   <p className="text-[10px] tracking-widest text-[#F0EADB]/40">RINNOVO ANNUALE</p>
@@ -76,20 +76,20 @@ export default function Partner() {
 
           {/* PROIEZIONE ECONOMICA */}
           <FadeInSection className="mt-16">
-            <h2 className="font-brand text-2xl text-white tracking-widest">
+            <h2 className="font-serif font-semibold text-2xl text-white">
               PROIEZIONE ECONOMICA 5 ANNI
             </h2>
-            <div className="mt-6 overflow-x-auto border border-[#C9A84C]/20 bg-[#0a0a0a]">
+            <div className="mt-6 overflow-x-auto border border-white/10 bg-[#0a0a0a]">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/20">
+                  <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-white/10">
                     <th className="px-4 py-3">Anno</th>
                     <th className="px-4 py-3">Iscritti</th>
                     <th className="px-4 py-3">Ricavi Annui</th>
                     <th className="px-4 py-3">Risultato</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#C9A84C]/10">
+                <tbody className="divide-y divide-white/10">
                   {overview.data.economicProjection.map((row) => (
                     <tr key={row.year}>
                       <td className="px-4 py-4 font-brand text-xl text-[#C9A84C]">{row.year}</td>
@@ -109,10 +109,10 @@ export default function Partner() {
 
       {/* ROADMAP */}
       <FadeInSection className="mt-16">
-        <h2 className="font-brand text-2xl text-white tracking-widest">ROADMAP STRATEGICA</h2>
+        <h2 className="font-serif font-semibold text-2xl text-white">ROADMAP STRATEGICA</h2>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           {ROADMAP.map((item) => (
-            <div key={item.date} className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-6">
+            <div key={item.date} className="bg-[#0a0a0a] border border-white/10 p-6">
               <p className="font-brand text-3xl text-[#DCBD6B]">{item.date}</p>
               <p className="mt-2 font-serif italic text-sm text-[#F0EADB]/60">{item.text}</p>
             </div>
@@ -121,7 +121,7 @@ export default function Partner() {
       </FadeInSection>
 
       {/* CONTATTO */}
-      <FadeInSection className="mt-16 text-center border border-[#C9A84C]/20 bg-[#0a0a0a] p-12">
+      <FadeInSection className="mt-16 text-center border border-white/10 bg-[#0a0a0a] p-12">
         <h2 className="font-serif italic text-2xl text-[#F0EADB]/80">
           Interessato a investire o collaborare con REVISORE?
         </h2>

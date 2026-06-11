@@ -80,8 +80,8 @@ export default function AssistantWidget() {
 
       {/* Pannello chat */}
       {open && (
-        <div className="chat-pop fixed bottom-24 right-4 sm:right-6 z-[70] w-[calc(100vw-2rem)] sm:w-96 max-h-[70vh] flex flex-col bg-[#0A0A0A] border border-[#C9A84C]/30 shadow-2xl">
-          <div className="px-5 py-4 border-b border-[#C9A84C]/15 flex items-center gap-3">
+        <div className="chat-pop fixed bottom-24 right-4 sm:right-6 z-[70] w-[calc(100vw-2rem)] sm:w-96 max-h-[70vh] flex flex-col bg-[#0A0A0A] border border-white/15 shadow-2xl">
+          <div className="px-5 py-4 border-b border-white/10 flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <div>
               <p className="font-brand text-lg tracking-[3px] text-white leading-none">ASSISTENTE REVISORE</p>
@@ -98,7 +98,7 @@ export default function AssistantWidget() {
                   className={`max-w-[85%] px-4 py-2.5 text-sm leading-relaxed ${
                     m.role === "user"
                       ? "bg-[#C9A84C] text-black"
-                      : "bg-[#060606] border border-[#C9A84C]/20 text-[#F0EADB]/90"
+                      : "bg-[#060606] border border-white/10 text-[#F0EADB]/90"
                   }`}
                 >
                   {m.content}
@@ -107,7 +107,7 @@ export default function AssistantWidget() {
             ))}
             {pending && (
               <div className="flex justify-start">
-                <div className="bg-[#060606] border border-[#C9A84C]/20 px-4 py-3 flex gap-1.5">
+                <div className="bg-[#060606] border border-white/10 px-4 py-3 flex gap-1.5">
                   <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
                   <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
                   <span className="typing-dot w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
@@ -123,7 +123,7 @@ export default function AssistantWidget() {
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="px-3 py-1.5 border border-[#C9A84C]/30 text-[#C9A84C] text-xs hover:bg-[#C9A84C]/10 transition-colors"
+                  className="px-3 py-1.5 border border-white/15 text-[#C9A84C] text-xs hover:bg-[#C9A84C]/10 transition-colors"
                 >
                   {s}
                 </button>
@@ -136,13 +136,13 @@ export default function AssistantWidget() {
               e.preventDefault();
               send(input);
             }}
-            className="p-3 border-t border-[#C9A84C]/15 flex gap-2"
+            className="p-3 border-t border-white/10 flex gap-2"
           >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Scrivi la tua domanda..."
-              className="flex-1 bg-[#060606] border border-[#C9A84C]/30 px-3 py-2 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
+              className="flex-1 bg-[#060606] border border-white/15 px-3 py-2 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
             />
             <button
               type="submit"

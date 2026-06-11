@@ -6,7 +6,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import FadeInSection from "../components/FadeInSection";
 
 const selectClass =
-  "bg-[#0a0a0a] border border-[#C9A84C]/30 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none w-full";
+  "bg-[#0a0a0a] border border-white/15 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none w-full";
 
 export default function Places() {
   const [cityInput, setCityInput] = useState("");
@@ -28,7 +28,7 @@ export default function Places() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
       <FadeInSection>
-        <h1 className="font-brand text-5xl sm:text-7xl text-white tracking-widest">
+        <h1 className="font-serif font-semibold text-5xl sm:text-7xl text-white">
           STRUTTURE ISPEZIONATE
         </h1>
         <p className="mt-3 font-serif italic text-xl text-[#F0EADB]/60">

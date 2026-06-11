@@ -11,7 +11,7 @@ export default function Trailer() {
           <span className="px-4 py-1 border border-[#C9A84C]/40 text-[10px] tracking-widest text-[#C9A84C]">
             IL TRAILER UFFICIALE
           </span>
-          <h1 className="mt-6 font-brand text-5xl sm:text-7xl text-white tracking-widest">
+          <h1 className="mt-6 font-serif font-semibold text-5xl sm:text-7xl text-white">
             CHE COS'È REVISORE?
           </h1>
           <p className="mt-4 font-serif italic text-xl text-[#F0EADB]/60 max-w-2xl mx-auto">

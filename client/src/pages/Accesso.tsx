@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isAxiosError } from "axios";
 import { useAuth } from "../context/AuthContext";
-import { EmblemVisual } from "../cinema/visuals";
 import type { User } from "../types";
 
 const inputClass =
-  "w-full bg-[#060606] border border-[#C9A84C]/30 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
+  "w-full bg-[#060606] border border-white/15 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
 
 const AREAS = [
   { title: "UTENTI", desc: "Valuta le strutture e segui i punteggi live dal tuo account personale." },
@@ -57,11 +56,12 @@ export default function Accesso() {
 
   return (
     <div className="gold-grid min-h-[85vh] flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 border border-[#C9A84C]/20 bg-[#0a0a0a]">
+      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 border border-white/10 bg-[#0a0a0a]">
         {/* Pannello istituzionale */}
-        <div className="hidden lg:flex flex-col justify-center items-center gap-6 p-12 border-r border-[#C9A84C]/15 bg-[#060606]">
-          <EmblemVisual className="w-24 h-24" />
-          <p className="font-brand text-3xl tracking-[6px] text-white">REVISORE</p>
+        <div className="hidden lg:flex flex-col justify-center items-center gap-6 p-12 border-r border-white/10 bg-[#060606]">
+          <p className="font-serif font-semibold text-4xl tracking-[0.18em] text-white">
+            REVISORE<span className="text-[#C9A84C]">.</span>
+          </p>
           <p className="text-[10px] uppercase tracking-[4px] text-[#C9A84C]">
             Un accesso unico, tre mondi
           </p>
@@ -77,7 +77,7 @@ export default function Accesso() {
 
         {/* Form */}
         <div className="p-8 sm:p-12">
-          <div className="flex border border-[#C9A84C]/25">
+          <div className="flex border border-white/15">
             {(["login", "register"] as const).map((m) => (
               <button
                 key={m}

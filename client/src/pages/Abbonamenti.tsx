@@ -5,7 +5,7 @@ import FadeInSection from "../components/FadeInSection";
 import { ShieldVisual } from "../cinema/visuals";
 
 const inputClass =
-  "w-full bg-[#060606] border border-[#C9A84C]/30 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
+  "w-full bg-[#060606] border border-white/15 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none";
 
 const PLANS = [
   {
@@ -89,7 +89,7 @@ export default function Abbonamenti() {
           <span className="px-4 py-1 border border-[#C9A84C]/40 text-[10px] tracking-widest text-[#C9A84C]">
             PER LE STRUTTURE
           </span>
-          <h1 className="mt-8 font-brand text-5xl sm:text-7xl md:text-8xl text-white tracking-widest leading-none">
+          <h1 className="mt-8 font-serif font-semibold text-5xl sm:text-7xl md:text-8xl text-white leading-none">
             ABBONAMENTI REVISORE
           </h1>
           <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#F0EADB]/70 max-w-3xl mx-auto">
@@ -158,10 +158,10 @@ export default function Abbonamenti() {
       </section>
 
       {/* FORM RICHIESTA */}
-      <section id="richiesta" className="py-16 px-4 bg-[#0A0A0A] border-y border-[#C9A84C]/10">
+      <section id="richiesta" className="py-16 px-4 bg-[#0A0A0A] border-y border-white/10">
         <div className="max-w-2xl mx-auto">
           <FadeInSection>
-            <h2 className="font-brand text-4xl text-white tracking-widest text-center">
+            <h2 className="font-serif font-semibold text-4xl text-white text-center">
               Richiedi l'Ispezione
             </h2>
             <p className="mt-3 font-serif italic text-center text-[#F0EADB]/60">

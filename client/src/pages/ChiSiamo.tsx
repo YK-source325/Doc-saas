@@ -66,7 +66,7 @@ export default function ChiSiamo() {
       {/* HERO */}
       <section className="py-28 text-center max-w-4xl mx-auto">
         <FadeInSection>
-          <h1 className="font-brand text-6xl sm:text-8xl text-white tracking-widest">CHI SIAMO</h1>
+          <h1 className="font-serif font-semibold text-6xl sm:text-8xl text-white">CHI SIAMO</h1>
           <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#F0EADB]/70">
             REVISORE nasce dall'incontro tra rigore ispettivo professionale e la potenza della
             comunicazione digitale.
@@ -77,14 +77,14 @@ export default function ChiSiamo() {
       {/* PROFILO FONDATORE */}
       <section className="max-w-6xl mx-auto">
         <FadeInSection>
-          <div className="border border-[#C9A84C]/20 p-8 sm:p-12 grid grid-cols-1 md:grid-cols-12 gap-10 items-center bg-[#0a0a0a]">
+          <div className="border border-white/10 p-8 sm:p-12 grid grid-cols-1 md:grid-cols-12 gap-10 items-center bg-[#0a0a0a]">
             <div className="md:col-span-4 flex justify-center">
               <div className="w-56 h-56 rounded-full bg-[#0a0a0a] border-2 border-[#C9A84C] flex items-center justify-center">
                 <span className="font-brand text-7xl text-[#C9A84C]">YK</span>
               </div>
             </div>
             <div className="md:col-span-8">
-              <h2 className="font-brand text-4xl sm:text-5xl text-white tracking-widest">YEVHEN KHARA</h2>
+              <h2 className="font-serif font-semibold text-4xl sm:text-5xl text-white">YEVHEN KHARA</h2>
               <p className="mt-1 font-serif italic text-xl text-[#F0EADB]/70">Fondatore & Ispettore Capo</p>
               <p className="mt-5 text-[#F0EADB]/70 leading-relaxed">
                 Con oltre 13 anni di esperienza nell'ospitalità italiana, Yevhen Khara ha lavorato in
@@ -96,7 +96,7 @@ export default function ChiSiamo() {
                 {TAGS.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-[#C9A84C]/10 border border-[#C9A84C]/30 text-[#C9A84C] text-[10px] tracking-widest uppercase"
+                    className="px-3 py-1 bg-[#C9A84C]/10 border border-white/15 text-[#C9A84C] text-[10px] tracking-widest uppercase"
                   >
                     {tag}
                   </span>
@@ -110,13 +110,13 @@ export default function ChiSiamo() {
       {/* I 3 PILASTRI */}
       <section className="py-28 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-white tracking-widest">I 3 Pilastri</h2>
+          <h2 className="font-serif font-semibold text-5xl text-white">I 3 Pilastri</h2>
         </FadeInSection>
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
           {PILLARS.map((pillar, i) => (
             <FadeInSection key={pillar.num} delay={i * 150}>
-              <div className="group bg-[#0a0a0a] border border-[#C9A84C]/20 p-10 hover:border-[#C9A84C]/60 transition-colors h-full">
-                <span className="inline-flex w-12 h-12 items-center justify-center border border-[#C9A84C]/30 text-[#C9A84C] font-brand text-2xl group-hover:bg-[#C9A84C] group-hover:text-black transition-colors">
+              <div className="group bg-[#0a0a0a] border border-white/10 p-10 hover:border-[#C9A84C]/60 transition-colors h-full">
+                <span className="inline-flex w-12 h-12 items-center justify-center border border-white/15 text-[#C9A84C] font-brand text-2xl group-hover:bg-[#C9A84C] group-hover:text-black transition-colors">
                   {pillar.num}
                 </span>
                 <h3 className="mt-6 uppercase tracking-widest font-bold text-[#F0EADB]">{pillar.title}</h3>
@@ -128,7 +128,7 @@ export default function ChiSiamo() {
       </section>
 
       {/* COUNTER */}
-      <section className="py-20 bg-[#0A0A0A] border-y border-[#C9A84C]/10 -mx-4 sm:-mx-6 px-4 sm:px-6">
+      <section className="py-20 bg-[#0A0A0A] border-y border-white/10 -mx-4 sm:-mx-6 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
           {COUNTERS.map((c, i) => (
             <FadeInSection key={c.label} delay={i * 100}>
@@ -144,7 +144,7 @@ export default function ChiSiamo() {
       {/* TIMELINE */}
       <section className="py-28 max-w-4xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-white tracking-widest">La Roadmap</h2>
+          <h2 className="font-serif font-semibold text-5xl text-white">La Roadmap</h2>
         </FadeInSection>
         <div className="mt-16 relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#C9A84C]/60 via-[#C9A84C]/30 to-transparent" />
@@ -161,7 +161,7 @@ export default function ChiSiamo() {
                       i % 2 === 0 ? "md:left-auto md:-right-[6.5px]" : "md:-left-[6.5px]"
                     }`}
                   />
-                  <p className="font-brand text-2xl text-white tracking-widest">{item.date}</p>
+                  <p className="font-serif font-semibold text-2xl text-white">{item.date}</p>
                   <p className="mt-2 font-serif italic text-[#F0EADB]/70">{item.text}</p>
                 </div>
               </FadeInSection>
@@ -173,14 +173,14 @@ export default function ChiSiamo() {
       {/* CERTIFICAZIONI */}
       <section className="py-20 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-white tracking-widest">
+          <h2 className="font-serif font-semibold text-5xl text-white">
             Certificazioni Professionali
           </h2>
         </FadeInSection>
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
           {CERTIFICATIONS.map((cert, i) => (
             <FadeInSection key={cert.title} delay={i * 150}>
-              <div className="bg-[#0a0a0a] border border-[#C9A84C]/20 p-8 h-full">
+              <div className="bg-[#0a0a0a] border border-white/10 p-8 h-full">
                 <span
                   className="px-3 py-1 border rounded-full text-[10px] font-bold tracking-widest"
                   style={{ borderColor: cert.statusColor, color: cert.statusColor }}
@@ -199,12 +199,12 @@ export default function ChiSiamo() {
       {/* KIT DI ISPEZIONE */}
       <section className="py-20 pb-28 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-white tracking-widest">Kit di Ispezione</h2>
+          <h2 className="font-serif font-semibold text-5xl text-white">Kit di Ispezione</h2>
         </FadeInSection>
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {KIT.map((tool, i) => (
             <FadeInSection key={tool.name} delay={(i % 4) * 100}>
-              <div className="bg-[#0a0a0a] border border-[#C9A84C]/20 hover:border-[#C9A84C]/60 p-6 transition-colors h-full">
+              <div className="bg-[#0a0a0a] border border-white/10 hover:border-[#C9A84C]/60 p-6 transition-colors h-full">
                 <span className="font-brand text-3xl text-[#C9A84C]">+</span>
                 <h3 className="mt-3 font-bold text-sm text-[#F0EADB]">{tool.name}</h3>
                 <p className="mt-2 font-serif italic text-sm text-[#F0EADB]/50">{tool.desc}</p>

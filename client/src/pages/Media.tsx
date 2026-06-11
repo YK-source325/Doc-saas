@@ -19,7 +19,7 @@ const PHOTOS_ROW = [
 function PhotoCard({ title, desc, ratio }: { title: string; desc: string; ratio: string }) {
   return (
     <div
-      className={`relative ${ratio} bg-[#0a0a0a] border border-[#C9A84C]/20 hover:border-[#C9A84C]/60 transition-colors overflow-hidden group`}
+      className={`relative ${ratio} bg-[#0a0a0a] border border-white/10 hover:border-[#C9A84C]/60 transition-colors overflow-hidden group`}
     >
       <div className="absolute inset-0 gold-grid opacity-40" />
       <div className="absolute inset-0 flex items-center justify-center">
@@ -39,7 +39,7 @@ function VideoCard({ video, onPlay }: { video: MediaVideo; onPlay: () => void })
   return (
     <button
       onClick={onPlay}
-      className="text-left w-full bg-[#0a0a0a] border border-[#C9A84C]/20 hover:border-[#C9A84C]/60 transition-colors group"
+      className="text-left w-full bg-[#0a0a0a] border border-white/10 hover:border-[#C9A84C]/60 transition-colors group"
     >
       <div className="relative aspect-video overflow-hidden">
         <div className="absolute inset-0 gold-grid opacity-10" />
@@ -73,7 +73,7 @@ export default function Media() {
           <span className="px-4 py-1 border border-[#C9A84C]/40 text-[10px] tracking-widest text-[#C9A84C]">
             MEDIA & DOCUMENTAZIONE
           </span>
-          <h1 className="mt-8 font-brand text-6xl sm:text-8xl text-white tracking-widest leading-none">
+          <h1 className="mt-8 font-serif font-semibold text-6xl sm:text-8xl text-white leading-none">
             MEDIA REVISORE
           </h1>
           <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#F0EADB]/70 max-w-3xl mx-auto">
@@ -105,7 +105,7 @@ export default function Media() {
       {/* VIDEO */}
       <section className="py-20 px-4 max-w-6xl mx-auto">
         <FadeInSection>
-          <h2 className="font-brand text-4xl text-white tracking-widest">I Video</h2>
+          <h2 className="font-serif font-semibold text-4xl text-white">I Video</h2>
           <p className="mt-2 font-serif italic text-[#F0EADB]/60">
             Scene animate in anteprima — con la sceneggiatura completa per le riprese reali.
           </p>
@@ -120,7 +120,7 @@ export default function Media() {
 
         {/* SCENEGGIATURE */}
         <FadeInSection className="mt-16">
-          <h2 className="font-brand text-4xl text-white tracking-widest">Le Sceneggiature</h2>
+          <h2 className="font-serif font-semibold text-4xl text-white">Le Sceneggiature</h2>
           <p className="mt-2 font-serif italic text-[#F0EADB]/60">
             Storyboard professionali pronti per il videomaker: inquadrature, azioni, durate e note di
             regia per ogni video.
@@ -138,7 +138,7 @@ export default function Media() {
       {/* GALLERIA FOTO */}
       <section className="py-20 px-4 max-w-6xl mx-auto">
         <FadeInSection>
-          <h2 className="font-brand text-4xl text-white tracking-widest">La Galleria</h2>
+          <h2 className="font-serif font-semibold text-4xl text-white">La Galleria</h2>
         </FadeInSection>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           {PHOTOS_WIDE.map((photo, i) => (
