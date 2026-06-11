@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { api } from "../api";
 import {
   useCreatePlace,
   useDeletePlace,
@@ -48,6 +50,117 @@ function formFromPlace(p: EnrichedPlace): FormState {
     googleScore: p.googleScore !== null ? String(p.googleScore) : "",
     tripadvisorScore: p.tripadvisorScore !== null ? String(p.tripadvisorScore) : "",
   };
+}
+
+interface SubscriptionRequest {
+  id: number;
+  structureName: string;
+  contactName: string;
+  email: string;
+  phone: string | null;
+  city: string;
+  type: string;
+  tier: string;
+  message: string | null;
+  status: string;
+  createdAt: string;
+}
+
+const SUB_STATUS: Record<string, { label: string; color: string }> = {
+  new: { label: "NUOVA", color: "#C9A84C" },
+  contacted: { label: "CONTATTATA", color: "#f59e0b" },
+  active: { label: "ATTIVA", color: "#22c55e" },
+  rejected: { label: "RIFIUTATA", color: "#6b7280" },
+};
+
+function SubscriptionRequests() {
+  const queryClient = useQueryClient();
+  const requests = useQuery({
+    queryKey: ["subscription-requests"],
+    queryFn: async () => {
+      const { data } = await api.get<SubscriptionRequest[]>("/subscriptions");
+      return data;
+    },
+  });
+  const setStatus = useMutation({
+    mutationFn: async ({ id, status }: { id: number; status: string }) => {
+      await api.patch(`/subscriptions/${id}`, { status });
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["subscription-requests"] }),
+  });
+
+  return (
+    <FadeInSection className="mt-16">
+      <h2 className="font-brand text-3xl text-white tracking-widest">RICHIESTE DI ABBONAMENTO</h2>
+      {requests.isLoading && <LoadingSpinner />}
+      {requests.isError && <ErrorMessage onRetry={() => requests.refetch()} />}
+      {requests.data && requests.data.length === 0 && (
+        <p className="mt-6 font-serif italic text-[#F0EADB]/50">
+          Nessuna richiesta al momento. Arriveranno dalla pagina Abbonamenti.
+        </p>
+      )}
+      {requests.data && requests.data.length > 0 && (
+        <div className="mt-6 overflow-x-auto border border-[#C9A84C]/20 bg-[#0a0a0a]">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr className="text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/20">
+                <th className="px-4 py-3">Struttura</th>
+                <th className="px-4 py-3">Referente</th>
+                <th className="px-4 py-3">Città</th>
+                <th className="px-4 py-3">Targa</th>
+                <th className="px-4 py-3">Stato</th>
+                <th className="px-4 py-3">Gestione</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#C9A84C]/10">
+              {requests.data.map((r) => {
+                const status = SUB_STATUS[r.status] ?? SUB_STATUS.new;
+                return (
+                  <tr key={r.id} className="hover:bg-[#C9A84C]/5 align-top">
+                    <td className="px-4 py-3">
+                      <p className="font-serif text-base text-white">{r.structureName}</p>
+                      {r.message && (
+                        <p className="mt-1 font-serif italic text-xs text-[#F0EADB]/50 max-w-xs">
+                          {r.message}
+                        </p>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-[#F0EADB]/70">
+                      {r.contactName}
+                      <span className="block text-xs text-[#F0EADB]/40">{r.email}</span>
+                      {r.phone && <span className="block text-xs text-[#F0EADB]/40">{r.phone}</span>}
+                    </td>
+                    <td className="px-4 py-3 text-[#F0EADB]/60">{r.city}</td>
+                    <td className="px-4 py-3 font-brand text-lg text-[#C9A84C]">{r.tier}</td>
+                    <td className="px-4 py-3">
+                      <span
+                        className="px-3 py-1 border rounded-full text-[10px] font-bold tracking-widest"
+                        style={{ borderColor: status.color, color: status.color }}
+                      >
+                        {status.label}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <select
+                        value={r.status}
+                        onChange={(e) => setStatus.mutate({ id: r.id, status: e.target.value })}
+                        className="bg-[#060606] border border-[#C9A84C]/30 px-2 py-1 text-xs text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none"
+                      >
+                        <option value="new">Nuova</option>
+                        <option value="contacted">Contattata</option>
+                        <option value="active">Attiva</option>
+                        <option value="rejected">Rifiutata</option>
+                      </select>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </FadeInSection>
+  );
 }
 
 function validate(form: FormState): string | null {
@@ -132,7 +245,7 @@ export default function Admin() {
         </span>
         <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="font-brand text-5xl sm:text-6xl text-[#DCBD6B] tracking-widest">
+            <h1 className="font-brand text-5xl sm:text-6xl text-white tracking-widest">
               PANNELLO SVILUPPATORE
             </h1>
             <p className="mt-2 font-serif italic text-xl text-[#F0EADB]/60">
@@ -207,11 +320,13 @@ export default function Admin() {
         )}
       </div>
 
+      <SubscriptionRequests />
+
       {/* MODALE CREA/MODIFICA */}
       {editing && (
         <div className="fixed inset-0 z-[60] bg-[#060606]/90 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div className="w-full max-w-lg bg-[#0a0a0a] border border-[#C9A84C]/30 p-8">
-            <h2 className="font-brand text-2xl text-[#DCBD6B] tracking-widest">
+            <h2 className="font-brand text-2xl text-white tracking-widest">
               {editing === "new" ? "NUOVA STRUTTURA" : `MODIFICA — ${editing.name}`}
             </h2>
             <form onSubmit={submit} className="mt-6 space-y-4">

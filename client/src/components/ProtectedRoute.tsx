@@ -14,7 +14,7 @@ export default function ProtectedRoute({ roles, children }: Props) {
   const location = useLocation();
 
   if (loading) return <LoadingSpinner />;
-  if (!user) return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+  if (!user) return <Navigate to="/accesso" state={{ from: location.pathname }} replace />;
   if (!roles.includes(user.role)) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-32 text-center">

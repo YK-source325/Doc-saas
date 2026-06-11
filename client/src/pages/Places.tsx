@@ -28,7 +28,7 @@ export default function Places() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
       <FadeInSection>
-        <h1 className="font-brand text-5xl sm:text-7xl text-[#DCBD6B] tracking-widest">
+        <h1 className="font-brand text-5xl sm:text-7xl text-white tracking-widest">
           STRUTTURE ISPEZIONATE
         </h1>
         <p className="mt-3 font-serif italic text-xl text-[#F0EADB]/60">

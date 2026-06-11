@@ -1,4 +1,4 @@
-import { pgTable, serial, text, real, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, real, integer, timestamp } from "drizzle-orm/pg-core";
 
 export const places = pgTable("places", {
   id:               serial("id").primaryKey(),
@@ -22,6 +22,7 @@ export const communityRatings = pgTable("community_ratings", {
   score:      real("score").notNull(),
   comment:    text("comment"),
   authorName: text("author_name").notNull(),
+  userId:     integer("user_id"),
   createdAt:  timestamp("created_at").defaultNow(),
 });
 
@@ -32,4 +33,18 @@ export const users = pgTable("users", {
   name:         text("name").notNull(),
   role:         text("role").notNull().default("user"), // user | partner | developer
   createdAt:    timestamp("created_at").defaultNow(),
+});
+
+export const subscriptionRequests = pgTable("subscription_requests", {
+  id:            serial("id").primaryKey(),
+  structureName: text("structure_name").notNull(),
+  contactName:   text("contact_name").notNull(),
+  email:         text("email").notNull(),
+  phone:         text("phone"),
+  city:          text("city").notNull(),
+  type:          text("type").notNull(),       // hotel | restaurant | bar | agriturismo
+  tier:          text("tier").notNull(),       // SILVER | ORO | DIAMOND
+  message:       text("message"),
+  status:        text("status").notNull().default("new"), // new | contacted | active | rejected
+  createdAt:     timestamp("created_at").defaultNow(),
 });

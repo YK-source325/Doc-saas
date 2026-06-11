@@ -66,7 +66,7 @@ export default function ChiSiamo() {
       {/* HERO */}
       <section className="py-28 text-center max-w-4xl mx-auto">
         <FadeInSection>
-          <h1 className="font-brand text-6xl sm:text-8xl text-[#C9A84C] tracking-widest">CHI SIAMO</h1>
+          <h1 className="font-brand text-6xl sm:text-8xl text-white tracking-widest">CHI SIAMO</h1>
           <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#F0EADB]/70">
             REVISORE nasce dall'incontro tra rigore ispettivo professionale e la potenza della
             comunicazione digitale.
@@ -84,7 +84,7 @@ export default function ChiSiamo() {
               </div>
             </div>
             <div className="md:col-span-8">
-              <h2 className="font-brand text-4xl sm:text-5xl text-[#DCBD6B] tracking-widest">YEVHEN KHARA</h2>
+              <h2 className="font-brand text-4xl sm:text-5xl text-white tracking-widest">YEVHEN KHARA</h2>
               <p className="mt-1 font-serif italic text-xl text-[#F0EADB]/70">Fondatore & Ispettore Capo</p>
               <p className="mt-5 text-[#F0EADB]/70 leading-relaxed">
                 Con oltre 13 anni di esperienza nell'ospitalità italiana, Yevhen Khara ha lavorato in
@@ -110,7 +110,7 @@ export default function ChiSiamo() {
       {/* I 3 PILASTRI */}
       <section className="py-28 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">I 3 Pilastri</h2>
+          <h2 className="font-brand text-5xl text-white tracking-widest">I 3 Pilastri</h2>
         </FadeInSection>
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
           {PILLARS.map((pillar, i) => (
@@ -144,7 +144,7 @@ export default function ChiSiamo() {
       {/* TIMELINE */}
       <section className="py-28 max-w-4xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">La Roadmap</h2>
+          <h2 className="font-brand text-5xl text-white tracking-widest">La Roadmap</h2>
         </FadeInSection>
         <div className="mt-16 relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#C9A84C]/60 via-[#C9A84C]/30 to-transparent" />
@@ -161,7 +161,7 @@ export default function ChiSiamo() {
                       i % 2 === 0 ? "md:left-auto md:-right-[6.5px]" : "md:-left-[6.5px]"
                     }`}
                   />
-                  <p className="font-brand text-2xl text-[#C9A84C] tracking-widest">{item.date}</p>
+                  <p className="font-brand text-2xl text-white tracking-widest">{item.date}</p>
                   <p className="mt-2 font-serif italic text-[#F0EADB]/70">{item.text}</p>
                 </div>
               </FadeInSection>
@@ -173,7 +173,7 @@ export default function ChiSiamo() {
       {/* CERTIFICAZIONI */}
       <section className="py-20 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">
+          <h2 className="font-brand text-5xl text-white tracking-widest">
             Certificazioni Professionali
           </h2>
         </FadeInSection>
@@ -199,7 +199,7 @@ export default function ChiSiamo() {
       {/* KIT DI ISPEZIONE */}
       <section className="py-20 pb-28 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
-          <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">Kit di Ispezione</h2>
+          <h2 className="font-brand text-5xl text-white tracking-widest">Kit di Ispezione</h2>
         </FadeInSection>
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {KIT.map((tool, i) => (

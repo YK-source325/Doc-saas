@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Logo from "./Logo";
 
 const LINKS = [
   { to: "/", label: "Piattaforma" },
-  { to: "/places", label: "Esplora Strutture" },
-  { to: "/dashboard", label: "Live Dashboard" },
-  { to: "/targhe", label: "Le Targhe" },
+  { to: "/places", label: "Strutture" },
+  { to: "/dashboard", label: "Dashboard" },
+  { to: "/targhe", label: "Targhe" },
+  { to: "/abbonamenti", label: "Abbonamenti" },
   { to: "/trailer", label: "Trailer" },
   { to: "/chi-siamo", label: "Chi Siamo" },
   { to: "/media", label: "Media" },
@@ -14,7 +16,7 @@ const LINKS = [
 
 function linkClass(isActive: boolean): string {
   return `font-sans text-xs uppercase tracking-widest transition-colors ${
-    isActive ? "text-[#C9A84C]" : "text-[#F0EADB]/70 hover:text-[#C9A84C]"
+    isActive ? "text-white" : "text-[#F0EADB]/60 hover:text-white"
   }`;
 }
 
@@ -31,13 +33,23 @@ export default function Navbar() {
     navigate("/");
   };
 
+  const roleLabel =
+    user?.role === "developer" ? "Sviluppatore" : user?.role === "partner" ? "Partner" : "Utente";
+
   const accountLinks = (
     <>
+      <Link
+        to="/account"
+        onClick={() => { setAccountOpen(false); setOpen(false); }}
+        className="block px-4 py-2 text-xs uppercase tracking-widest text-[#F0EADB]/70 hover:text-white"
+      >
+        Il Mio Account
+      </Link>
       {user && (user.role === "partner" || user.role === "developer") && (
         <Link
           to="/partner"
           onClick={() => { setAccountOpen(false); setOpen(false); }}
-          className="block px-4 py-2 text-xs uppercase tracking-widest text-[#F0EADB]/70 hover:text-[#C9A84C]"
+          className="block px-4 py-2 text-xs uppercase tracking-widest text-[#F0EADB]/70 hover:text-white"
         >
           Area Partner
         </Link>
@@ -46,9 +58,9 @@ export default function Navbar() {
         <Link
           to="/admin"
           onClick={() => { setAccountOpen(false); setOpen(false); }}
-          className="block px-4 py-2 text-xs uppercase tracking-widest text-[#F0EADB]/70 hover:text-[#C9A84C]"
+          className="block px-4 py-2 text-xs uppercase tracking-widest text-[#F0EADB]/70 hover:text-white"
         >
-          Pannello Sviluppatore
+          Console Sviluppatore
         </Link>
       )}
       <button
@@ -61,14 +73,13 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#060606]/80 border-b border-[#C9A84C]/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-baseline" onClick={() => setOpen(false)}>
-          <span className="font-brand text-3xl text-[#DCBD6B]">R</span>
-          <span className="font-brand text-xl tracking-[6px] text-[#C9A84C]">EVISORE</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#060606]/85 border-b border-[#C9A84C]/15">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <Link to="/" onClick={() => setOpen(false)}>
+          <Logo />
         </Link>
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-5">
           {LINKS.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === "/"} className={({ isActive }) => linkClass(isActive)}>
               {l.label}
@@ -78,9 +89,9 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setAccountOpen((v) => !v)}
-                className="flex items-center gap-2 px-3 py-1.5 border border-[#C9A84C]/40 rounded-full text-xs uppercase tracking-widest text-[#C9A84C] hover:border-[#C9A84C]"
+                className="flex items-center gap-2 px-3 py-1.5 border border-[#C9A84C]/40 rounded-full text-xs uppercase tracking-widest text-white hover:border-[#C9A84C]"
               >
-                <span className="w-5 h-5 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 flex items-center justify-center font-brand">
+                <span className="w-5 h-5 rounded-full bg-[#C9A84C]/20 border border-[#C9A84C]/40 flex items-center justify-center font-brand text-[#C9A84C]">
                   {user.name.charAt(0)}
                 </span>
                 {user.name.split(" ")[0]}
@@ -88,7 +99,7 @@ export default function Navbar() {
               {accountOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-[#0A0A0A] border border-[#C9A84C]/20 py-2 shadow-xl">
                   <p className="px-4 py-2 text-[10px] uppercase tracking-widest text-[#F0EADB]/40 border-b border-[#C9A84C]/10">
-                    {user.email} — {user.role === "developer" ? "Sviluppatore" : user.role === "partner" ? "Partner" : "Utente"}
+                    {user.email} — {roleLabel}
                   </p>
                   {accountLinks}
                 </div>
@@ -96,8 +107,8 @@ export default function Navbar() {
             </div>
           ) : (
             <Link
-              to="/login"
-              className="px-4 py-1.5 border border-[#C9A84C] text-[#C9A84C] text-xs uppercase tracking-widest hover:bg-[#C9A84C]/10 transition-colors"
+              to="/accesso"
+              className="px-4 py-1.5 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-[#F0EADB] transition-colors"
             >
               Accedi
             </Link>
@@ -109,9 +120,9 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Apri menu"
         >
-          <span className={`block w-6 h-px bg-[#C9A84C] transition-transform ${open ? "rotate-45 translate-y-[3.5px]" : ""}`} />
-          <span className={`block w-6 h-px bg-[#C9A84C] transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-px bg-[#C9A84C] transition-transform ${open ? "-rotate-45 -translate-y-[9.5px]" : ""}`} />
+          <span className={`block w-6 h-px bg-white transition-transform ${open ? "rotate-45 translate-y-[3.5px]" : ""}`} />
+          <span className={`block w-6 h-px bg-white transition-opacity ${open ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-px bg-white transition-transform ${open ? "-rotate-45 -translate-y-[9.5px]" : ""}`} />
         </button>
       </div>
 
@@ -133,9 +144,9 @@ export default function Navbar() {
               <div className="-mx-4">{accountLinks}</div>
             ) : (
               <Link
-                to="/login"
+                to="/accesso"
                 onClick={() => setOpen(false)}
-                className="inline-block px-4 py-1.5 border border-[#C9A84C] text-[#C9A84C] text-xs uppercase tracking-widest"
+                className="inline-block px-4 py-1.5 bg-white text-black font-bold text-xs uppercase tracking-widest"
               >
                 Accedi
               </Link>

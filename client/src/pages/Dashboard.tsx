@@ -22,7 +22,7 @@ export default function Dashboard() {
       {/* HEADER */}
       <FadeInSection>
         <div className="flex flex-wrap items-center gap-4">
-          <h1 className="font-brand text-5xl sm:text-6xl text-[#DCBD6B] tracking-widest">
+          <h1 className="font-brand text-5xl sm:text-6xl text-white tracking-widest">
             COMMAND CENTER
           </h1>
           <span className="flex items-center gap-2 px-3 py-1 border border-[#22c55e]/50 rounded-full">
@@ -122,7 +122,7 @@ export default function Dashboard() {
                 <line x1="12" y1="20" x2="12" y2="6" />
                 <line x1="19" y1="20" x2="19" y2="14" />
               </svg>
-              <h2 className="font-brand text-2xl text-[#C9A84C] tracking-widest">LEADERBOARD LIVE</h2>
+              <h2 className="font-brand text-2xl text-white tracking-widest">LEADERBOARD LIVE</h2>
             </div>
             <div className="mt-6">
               {leaderboard.isLoading && <LoadingSpinner />}

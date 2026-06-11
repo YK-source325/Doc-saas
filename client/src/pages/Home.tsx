@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
 import { useDashboardStats, useLeaderboard } from "../api/hooks";
 import AnimatedCounter from "../components/AnimatedCounter";
 import FadeInSection from "../components/FadeInSection";
@@ -40,13 +41,10 @@ export default function Home() {
           <span className="text-xs tracking-widest text-[#F0EADB]/70">MONITORAGGIO LIVE ATTIVO</span>
         </div>
 
-        <h1 className="flex items-baseline leading-none">
-          <span className="font-brand text-[100px] sm:text-[150px] md:text-[180px] text-[#DCBD6B]">R</span>
-          <span className="font-brand text-[64px] sm:text-[100px] md:text-[120px] tracking-[12px] sm:tracking-[20px] text-[#C9A84C]">
-            EVISORE
-          </span>
+        <h1>
+          <Logo size="lg" />
         </h1>
-        <p className="mt-4 font-serif italic text-xl sm:text-3xl text-[#F0EADB]/80 max-w-2xl">
+        <p className="mt-8 font-serif italic text-xl sm:text-3xl text-[#F0EADB]/80 max-w-2xl">
           L'eccellenza nell'ospitalità incontra l'intelligenza artificiale.
         </p>
 
@@ -105,7 +103,7 @@ export default function Home() {
       <section className="py-32 bg-[#0A0A0A] border-y border-[#C9A84C]/10 px-4">
         <div className="max-w-6xl mx-auto">
           <FadeInSection className="text-center">
-            <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">L'Algoritmo Revisore</h2>
+            <h2 className="font-brand text-5xl text-white tracking-widest">L'Algoritmo Revisore</h2>
             <p className="mt-3 font-serif italic text-xl text-[#F0EADB]/60">
               Una ponderazione scientifica e dinamica di tre fonti indipendenti.
             </p>
@@ -145,7 +143,7 @@ export default function Home() {
           <FadeInSection>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
-                <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">Top Eccellenze</h2>
+                <h2 className="font-brand text-5xl text-white tracking-widest">Top Eccellenze</h2>
                 <div className="mt-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#C9A84C] animate-pulse" />
                   <span className="text-xs tracking-widest text-[#F0EADB]/60">Monitoring in Tempo Reale</span>
@@ -198,7 +196,7 @@ export default function Home() {
       <section className="py-32 bg-[#060606] px-4">
         <div className="max-w-6xl mx-auto">
           <FadeInSection className="text-center">
-            <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">I 3 Livelli</h2>
+            <h2 className="font-brand text-5xl text-white tracking-widest">I 3 Livelli</h2>
           </FadeInSection>
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
             {LEVELS.map((level, i) => (
@@ -221,7 +219,7 @@ export default function Home() {
       <section className="py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <FadeInSection className="text-center">
-            <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">Proiezione Economica</h2>
+            <h2 className="font-brand text-5xl text-white tracking-widest">Proiezione Economica</h2>
             <p className="mt-3 font-serif italic text-xl text-[#F0EADB]/60">
               La crescita prevista della piattaforma nei primi cinque anni.
             </p>

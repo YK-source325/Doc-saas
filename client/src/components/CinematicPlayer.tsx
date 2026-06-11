@@ -63,6 +63,11 @@ export default function CinematicPlayer({ title, scenes, onClose, fullScreen = f
         ))}
       </div>
 
+      {/* Effetti pellicola */}
+      <div className="cine-vignette" />
+      <div className="cine-grain" />
+      {fullScreen && <div className="cine-letterbox absolute inset-0 pointer-events-none" />}
+
       {/* Scena corrente — key forza il remount e fa ripartire le animazioni */}
       <div
         key={index}
@@ -70,7 +75,7 @@ export default function CinematicPlayer({ title, scenes, onClose, fullScreen = f
       >
         {ended ? (
           <div className="text-center cine-fade px-6">
-            <p className="font-brand text-4xl md:text-5xl text-[#DCBD6B] tracking-widest">FINE</p>
+            <p className="font-brand text-4xl md:text-5xl text-white tracking-widest">FINE</p>
             <button
               onClick={() => goTo(0)}
               className="mt-6 px-6 py-2 border border-[#C9A84C] text-[#C9A84C] text-xs uppercase tracking-widest hover:bg-[#C9A84C]/10"

@@ -53,6 +53,9 @@ le API girano come funzione serverless (`api/index.ts` + `vercel.json`).
    il database al progetto. Vercel imposta da solo la variabile `DATABASE_URL`.
 2. **Sicurezza** — In **Settings → Environment Variables** aggiungi
    `JWT_SECRET` con un valore lungo e casuale.
+   *(Facoltativo)* aggiungi anche `ANTHROPIC_API_KEY` (da console.anthropic.com)
+   per attivare l'Assistente AI conversazionale; senza chiave l'assistente
+   funziona in modalità concierge basata sui dati live.
 3. **Redeploy** — Nella scheda **Deployments** premi **Redeploy** sull'ultimo
    deploy (serve perché le nuove variabili vengano lette).
 4. **Inizializzazione** — Apri una sola volta `https://<tuo-sito>/api/setup`:
@@ -110,5 +113,12 @@ POST/PUT/PATCH/DELETE /api/places...     (ruolo developer)
 | `/trailer` | Trailer cinematico animato "Che cos'è REVISORE?" |
 | `/chi-siamo` | Profilo fondatore, pilastri, roadmap, certificazioni, kit di ispezione |
 | `/media` | Scene animate dei 6 video + sceneggiature professionali per le riprese reali |
+| `/abbonamenti` | Piani Silver/Oro/Diamond e richiesta di ispezione per le strutture |
+| `/accesso` | Accesso unico per tutti i ruoli (login + registrazione) |
+| `/account` | Area personale del cliente: profilo e valutazioni lasciate |
 | `/partner` | Area riservata investitori (KPI live, modello di ricavo, proiezione) |
-| `/admin` | Pannello sviluppatore (CRUD strutture, stato targhe) |
+| `/admin` | Console sviluppatore (CRUD strutture, stato targhe, richieste abbonamento) |
+
+In ogni pagina è attivo l'**Assistente REVISORE** (chat in basso a destra): con
+`ANTHROPIC_API_KEY` risponde con l'AI di Claude conoscendo tutto il progetto e i
+dati live; senza chiave risponde in modalità concierge dai dati del database.

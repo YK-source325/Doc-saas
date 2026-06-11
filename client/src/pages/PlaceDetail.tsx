@@ -138,7 +138,7 @@ export default function PlaceDetail() {
         </FadeInSection>
 
         <FadeInSection delay={150}>
-          <h2 className="font-brand text-2xl text-[#C9A84C] tracking-widest">INFO STRUTTURA</h2>
+          <h2 className="font-brand text-2xl text-white tracking-widest">INFO STRUTTURA</h2>
           <dl className="mt-6 space-y-4 text-sm">
             {[
               ["Indirizzo", p.address],
@@ -159,7 +159,7 @@ export default function PlaceDetail() {
 
       {/* VALUTAZIONI COMMUNITY */}
       <FadeInSection className="mt-20">
-        <h2 className="font-brand text-2xl text-[#C9A84C] tracking-widest">VALUTAZIONI COMMUNITY</h2>
+        <h2 className="font-brand text-2xl text-white tracking-widest">VALUTAZIONI COMMUNITY</h2>
         {p.recentRatings.length === 0 ? (
           <p className="mt-6 font-serif italic text-[#F0EADB]/50">
             Nessuna valutazione ancora. Lascia la prima.
@@ -189,18 +189,14 @@ export default function PlaceDetail() {
       {/* FORM VALUTAZIONE */}
       <FadeInSection className="mt-16">
         <div className="border border-[#C9A84C]/20 bg-[#0a0a0a] p-8">
-          <h2 className="font-brand text-2xl text-[#C9A84C] tracking-widest">
+          <h2 className="font-brand text-2xl text-white tracking-widest">
             LASCIA LA TUA VALUTAZIONE
           </h2>
           {!user ? (
             <p className="mt-6 font-serif italic text-[#F0EADB]/60">
               Per lasciare una valutazione devi{" "}
-              <Link to="/login" className="text-[#C9A84C] not-italic font-sans text-sm uppercase tracking-widest hover:text-[#DCBD6B]">
-                accedere
-              </Link>{" "}
-              oppure{" "}
-              <Link to="/registrati" className="text-[#C9A84C] not-italic font-sans text-sm uppercase tracking-widest hover:text-[#DCBD6B]">
-                registrarti
+              <Link to="/accesso" className="text-[#C9A84C] not-italic font-sans text-sm uppercase tracking-widest hover:text-white">
+                accedere o registrarti
               </Link>
               .
             </p>

@@ -80,7 +80,7 @@ export default function Targhe() {
       {/* HERO */}
       <section className="gold-grid py-28 px-4 text-center">
         <FadeInSection>
-          <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl text-[#C9A84C] tracking-widest leading-none">
+          <h1 className="font-brand text-6xl sm:text-8xl md:text-9xl text-white tracking-widest leading-none">
             LE TARGHE REVISORE
           </h1>
           <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#F0EADB]/70 max-w-3xl mx-auto">
@@ -135,7 +135,7 @@ export default function Targhe() {
       <section className="py-20 px-4 bg-[#0A0A0A] border-y border-[#C9A84C]/10">
         <div className="max-w-5xl mx-auto">
           <FadeInSection className="text-center">
-            <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest">Come Funziona</h2>
+            <h2 className="font-brand text-5xl text-white tracking-widest">Come Funziona</h2>
           </FadeInSection>
           <div className="mt-16 relative grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="hidden md:block absolute top-7 left-[16%] right-[16%] border-t border-dashed border-[#C9A84C]/40" />
@@ -156,7 +156,7 @@ export default function Targhe() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <FadeInSection>
-            <h2 className="font-brand text-5xl text-[#DCBD6B] tracking-widest text-center">
+            <h2 className="font-brand text-5xl text-white tracking-widest text-center">
               Strutture Certificate
             </h2>
           </FadeInSection>
