@@ -105,6 +105,7 @@ router.post("/:id/ratings", requireAuth, async (req, res) => {
       score: body.data.score,
       comment: body.data.comment ?? null,
       authorName: req.user!.name,
+      userId: req.user!.id,
     })
     .returning();
   res.status(201).json(created);

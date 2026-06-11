@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -11,8 +11,9 @@ import Targhe from "./pages/Targhe";
 import ChiSiamo from "./pages/ChiSiamo";
 import Media from "./pages/Media";
 import Trailer from "./pages/Trailer";
-import Login from "./pages/Login";
-import Registrati from "./pages/Registrati";
+import Accesso from "./pages/Accesso";
+import Account from "./pages/Account";
+import Abbonamenti from "./pages/Abbonamenti";
 import Partner from "./pages/Partner";
 import Admin from "./pages/Admin";
 
@@ -36,11 +37,21 @@ export default function App() {
             <Route path="/places/:id" element={<PlaceDetail />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/targhe" element={<Targhe />} />
+            <Route path="/abbonamenti" element={<Abbonamenti />} />
             <Route path="/chi-siamo" element={<ChiSiamo />} />
             <Route path="/media" element={<Media />} />
             <Route path="/trailer" element={<Trailer />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/registrati" element={<Registrati />} />
+            <Route path="/accesso" element={<Accesso />} />
+            <Route path="/login" element={<Navigate to="/accesso" replace />} />
+            <Route path="/registrati" element={<Navigate to="/accesso" replace />} />
+            <Route
+              path="/account"
+              element={
+                <ProtectedRoute roles={["user", "partner", "developer"]}>
+                  <Account />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/partner"
               element={

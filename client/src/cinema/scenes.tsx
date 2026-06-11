@@ -3,6 +3,7 @@ import type { CineScene } from "../components/CinematicPlayer";
 import {
   AlgorithmVisual,
   GloveVisual,
+  InspectorVisual,
   PlaqueVisual,
   ShieldVisual,
   TeamVisual,
@@ -43,7 +44,7 @@ function TextScene({ kicker, title, subtitle, visual, visualClass = "" }: TextSc
         </p>
       )}
       {visual && <div className={`cine-fade cine-delay-1 ${visualClass}`}>{visual}</div>}
-      <h2 className="cine-fade cine-delay-2 font-brand text-4xl md:text-6xl tracking-widest text-[#DCBD6B] leading-tight">
+      <h2 className="cine-fade cine-delay-2 font-brand text-4xl md:text-6xl tracking-widest text-white leading-tight">
         {title}
       </h2>
       {subtitle && (
@@ -58,13 +59,13 @@ function TextScene({ kicker, title, subtitle, visual, visualClass = "" }: TextSc
 
 function LogoScene() {
   return (
-    <div className="flex flex-col items-center justify-center text-center px-8 py-16">
-      <div className="cine-fade flex items-baseline">
-        <span className="font-brand text-[90px] md:text-[140px] text-[#DCBD6B]">R</span>
-        <span className="font-brand text-[60px] md:text-[95px] tracking-[16px] text-[#C9A84C]">
-          EVISORE
+    <div className="flex flex-col items-center justify-center text-center px-8 py-16 gap-5">
+      <div className="cine-fade cine-delay-1">
+        <span className="font-serif font-semibold text-[64px] md:text-[110px] leading-none tracking-[0.12em] text-white">
+          REVISORE<span className="text-[#C9A84C]">.</span>
         </span>
       </div>
+      <div className="cine-fade cine-delay-2 h-px w-48 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
       <p className="cine-fade cine-delay-3 font-serif italic text-xl md:text-2xl text-[#F0EADB]/70">
         L'eccellenza nell'ospitalità incontra l'intelligenza artificiale.
       </p>
@@ -78,12 +79,30 @@ function GloveScene({ title, subtitle }: { title: string; subtitle: string }) {
       <div className="cine-glove">
         <GloveVisual className="w-28 h-28 md:w-40 md:h-40" />
       </div>
-      <h2 className="cine-fade cine-delay-2 font-brand text-4xl md:text-6xl tracking-widest text-[#DCBD6B]">
+      <h2 className="cine-fade cine-delay-2 font-brand text-4xl md:text-6xl tracking-widest text-white">
         {title}
       </h2>
       <p className="cine-fade cine-delay-3 font-serif italic text-lg md:text-2xl text-[#F0EADB]/70 max-w-xl">
         {subtitle}
       </p>
+    </div>
+  );
+}
+
+function InspectorScene({ title, subtitle }: { title: string; subtitle: string }) {
+  return (
+    <div className="flex flex-col md:flex-row items-center justify-center text-center md:text-left px-8 py-16 gap-8 md:gap-14 max-w-4xl mx-auto">
+      <div className="cine-fade cine-zoom shrink-0">
+        <InspectorVisual className="w-28 md:w-40 h-auto" />
+      </div>
+      <div>
+        <h2 className="cine-fade cine-delay-2 font-brand text-4xl md:text-6xl tracking-widest text-white leading-tight">
+          {title}
+        </h2>
+        <p className="cine-fade cine-delay-3 mt-4 font-serif italic text-lg md:text-2xl text-[#F0EADB]/70 max-w-xl">
+          {subtitle}
+        </p>
+      </div>
     </div>
   );
 }
@@ -94,7 +113,7 @@ function VanScene({ title, subtitle }: { title: string; subtitle: string }) {
       <div className="cine-drive w-full flex justify-center">
         <VanVisual className="w-64 md:w-96" />
       </div>
-      <h2 className="cine-fade cine-delay-3 font-brand text-4xl md:text-6xl tracking-widest text-[#DCBD6B]">
+      <h2 className="cine-fade cine-delay-3 font-brand text-4xl md:text-6xl tracking-widest text-white">
         {title}
       </h2>
       <p className="cine-fade cine-delay-4 font-serif italic text-lg md:text-2xl text-[#F0EADB]/70 max-w-xl">
@@ -120,9 +139,16 @@ export const TRAILER_SCENES: CineScene[] = [
   ),
   S(
     6000,
-    <GloveScene
+    <InspectorScene
       title="ENTRA L'ISPETTORE"
-      subtitle="Guanti bianchi, costume nero, distintivo REVISORE. Nessun preavviso, nessuno sconto."
+      subtitle="Costume nero, distintivo REVISORE, passo deciso. Nessun preavviso, nessuno sconto."
+    />
+  ),
+  S(
+    5000,
+    <GloveScene
+      title="I GUANTI BIANCHI"
+      subtitle="Il rituale che apre ogni ispezione. La pulizia non si dichiara: si dimostra."
     />
   ),
   S(

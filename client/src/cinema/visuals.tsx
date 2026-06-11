@@ -140,3 +140,47 @@ export function AlgorithmVisual({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+export function InspectorVisual({ className = "" }: { className?: string }) {
+  // Figura stilizzata dell'ispettore: costume nero, guanti bianchi, distintivo oro.
+  return (
+    <svg viewBox="0 0 120 200" className={className} fill="none">
+      {/* testa */}
+      <circle cx="60" cy="26" r="14" stroke="#F0EADB" strokeWidth="2.5" fill="#0A0A0A" />
+      {/* cappello */}
+      <path d="M44 20 a16 10 0 0 1 32 0 l4 2 h-40 Z" fill="#060606" stroke="#C9A84C" strokeWidth="1.5" />
+      {/* corpo / giacca */}
+      <path d="M38 60 q22 -14 44 0 l8 70 h-14 l-6 -44 v94 h-10 l-6 -56 -6 56 h-10 v-94 l-6 44 h-14 Z"
+        fill="#0A0A0A" stroke="#F0EADB" strokeWidth="2" strokeLinejoin="round" />
+      {/* camicia e cravatta */}
+      <path d="M54 58 l6 10 6 -10" stroke="#F0EADB" strokeWidth="2" />
+      <path d="M60 68 l-3 16 3 14 3 -14 Z" fill="#C9A84C" />
+      {/* distintivo */}
+      <circle cx="48" cy="78" r="4" fill="none" stroke="#C9A84C" strokeWidth="1.5" />
+      {/* guanti bianchi */}
+      <circle cx="26" cy="134" r="6" fill="#F0EADB" />
+      <circle cx="94" cy="134" r="6" fill="#F0EADB" />
+      {/* base */}
+      <line x1="30" y1="186" x2="90" y2="186" stroke="#C9A84C" strokeWidth="1.5" opacity="0.5" />
+    </svg>
+  );
+}
+
+export function EmblemVisual({ className = "", color = "#FFFFFF" }: { className?: string; color?: string }) {
+  // Emblema istituzionale REVISORE: scudo con R, stella e rami d'alloro.
+  return (
+    <svg viewBox="0 0 120 120" className={className} fill="none">
+      <path d="M60 8 L98 22 v32 c0 26 -17 42 -38 50 C39 96 22 80 22 54 V22 Z"
+        stroke={color} strokeWidth="3" fill="rgba(201,168,76,0.07)" />
+      <path d="M60 16 L90 27 v26 c0 21 -13 34 -30 41 C43 87 30 74 30 53 V27 Z"
+        stroke="#C9A84C" strokeWidth="1.2" opacity="0.7" />
+      <text x="60" y="64" textAnchor="middle" fill={color} fontFamily="Bebas Neue" fontSize="38">R</text>
+      <path d="M60 72 l3 6 7 1 -5 5 1 7 -6 -3 -6 3 1 -7 -5 -5 7 -1 Z" fill="#C9A84C" />
+      {/* rami d'alloro */}
+      <path d="M18 64 q-6 22 14 38 M14 60 q-2 6 2 12 M16 76 q0 7 6 12 M24 90 q3 6 10 9"
+        stroke="#C9A84C" strokeWidth="1.5" opacity="0.8" />
+      <path d="M102 64 q6 22 -14 38 M106 60 q2 6 -2 12 M104 76 q0 7 -6 12 M96 90 q-3 6 -10 9"
+        stroke="#C9A84C" strokeWidth="1.5" opacity="0.8" />
+    </svg>
+  );
+}

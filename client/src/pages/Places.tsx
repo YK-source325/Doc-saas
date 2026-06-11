@@ -6,7 +6,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import FadeInSection from "../components/FadeInSection";
 
 const selectClass =
-  "bg-[#0a0a0a] border border-[#C9A84C]/30 px-4 py-3 text-sm text-[#F0EADB] focus:border-[#C9A84C] focus:outline-none w-full";
+  "bg-white border border-black/15 px-4 py-3 text-sm text-[#141414] focus:border-[#A8842C] focus:outline-none w-full";
 
 export default function Places() {
   const [cityInput, setCityInput] = useState("");
@@ -28,10 +28,10 @@ export default function Places() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
       <FadeInSection>
-        <h1 className="font-brand text-5xl sm:text-7xl text-[#DCBD6B] tracking-widest">
+        <h1 className="font-serif font-semibold text-5xl sm:text-7xl text-[#141414]">
           STRUTTURE ISPEZIONATE
         </h1>
-        <p className="mt-3 font-serif italic text-xl text-[#F0EADB]/60">
+        <p className="mt-3 font-serif italic text-xl text-[#141414]/60">
           Directory in tempo reale delle strutture certificate dal Revisore.
         </p>
       </FadeInSection>
@@ -63,7 +63,7 @@ export default function Places() {
         {places.isLoading && <LoadingSpinner />}
         {places.isError && <ErrorMessage onRetry={() => places.refetch()} />}
         {places.data && places.data.length === 0 && (
-          <p className="py-24 text-center font-serif italic text-[#F0EADB]/50">
+          <p className="py-24 text-center font-serif italic text-[#141414]/50">
             Nessuna struttura trovata con questi filtri.
           </p>
         )}

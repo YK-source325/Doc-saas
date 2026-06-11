@@ -48,6 +48,23 @@ router.get("/", async (_req, res) => {
     )
   `);
 
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS subscription_requests (
+      id serial PRIMARY KEY,
+      structure_name text NOT NULL,
+      contact_name text NOT NULL,
+      email text NOT NULL,
+      phone text,
+      city text NOT NULL,
+      type text NOT NULL,
+      tier text NOT NULL,
+      message text,
+      status text NOT NULL DEFAULT 'new',
+      created_at timestamp DEFAULT now()
+    )
+  `);
+  await db.execute(sql`ALTER TABLE community_ratings ADD COLUMN IF NOT EXISTS user_id integer`);
+
   const existing = await db.select({ id: places.id }).from(places).limit(1);
   if (existing.length > 0) {
     return void res.json({
