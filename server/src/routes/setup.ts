@@ -5,11 +5,7 @@ import { communityRatings, places, users } from "../schema.js";
 import { hashPassword } from "../auth.js";
 import { SEED_PLACES, SEED_RATINGS, SEED_USERS } from "../seedData.js";
 
-const router = Router();
-
-// GET /api/setup — inizializza il database al primo avvio (es. su Vercel + Neon).
-// Idempotente: crea le tabelle se mancano e carica i dati solo se il DB è vuoto.
-router.get("/", async (_req, res) => {
+async function initialize(): Promise<boolean> {
   await db.execute(sql`
     CREATE TABLE IF NOT EXISTS places (
       id serial PRIMARY KEY,
@@ -47,7 +43,6 @@ router.get("/", async (_req, res) => {
       created_at timestamp DEFAULT now()
     )
   `);
-
   await db.execute(sql`
     CREATE TABLE IF NOT EXISTS subscription_requests (
       id serial PRIMARY KEY,
@@ -66,13 +61,7 @@ router.get("/", async (_req, res) => {
   await db.execute(sql`ALTER TABLE community_ratings ADD COLUMN IF NOT EXISTS user_id integer`);
 
   const existing = await db.select({ id: places.id }).from(places).limit(1);
-  if (existing.length > 0) {
-    return void res.json({
-      status: "ok",
-      message: "Database già inizializzato: nessuna modifica.",
-      seeded: false,
-    });
-  }
+  if (existing.length > 0) return false;
 
   await db.insert(places).values(SEED_PLACES);
   await db.insert(communityRatings).values(SEED_RATINGS);
@@ -84,11 +73,35 @@ router.get("/", async (_req, res) => {
       role: u.role,
     }))
   );
+  return true;
+}
 
+let initPromise: Promise<boolean> | null = null;
+
+// Inizializzazione automatica e idempotente: parte alla prima richiesta API,
+// crea le tabelle se mancano e carica i dati demo solo se il database è vuoto.
+// In caso di errore (es. database non ancora collegato) riprova alla richiesta successiva.
+export function ensureDatabaseReady(): Promise<boolean> {
+  if (!initPromise) {
+    initPromise = initialize().catch((err) => {
+      initPromise = null;
+      throw err;
+    });
+  }
+  return initPromise;
+}
+
+const router = Router();
+
+// GET /api/setup — mantenuto per controllo manuale; il sito si inizializza da solo.
+router.get("/", async (_req, res) => {
+  const seeded = await ensureDatabaseReady();
   res.json({
     status: "ok",
-    message: `Database inizializzato: ${SEED_PLACES.length} strutture, ${SEED_RATINGS.length} valutazioni, ${SEED_USERS.length} account.`,
-    seeded: true,
+    message: seeded
+      ? `Database inizializzato: ${SEED_PLACES.length} strutture, ${SEED_RATINGS.length} valutazioni, ${SEED_USERS.length} account.`
+      : "Database già inizializzato: nessuna modifica.",
+    seeded,
   });
 });
 
