@@ -59,12 +59,21 @@ async function createSchema() {
       created_at timestamp DEFAULT now()
     )
   `);
-  // Colonne aggiuntive (safe idempotent)
+  // Colonne aggiuntive — idempotent
   await db.execute(sql`ALTER TABLE community_ratings ADD COLUMN IF NOT EXISTS user_id integer`);
+  await db.execute(sql`ALTER TABLE community_ratings ADD COLUMN IF NOT EXISTS display_name text`);
+  await db.execute(sql`ALTER TABLE community_ratings ADD COLUMN IF NOT EXISTS is_anonymous boolean DEFAULT false`);
   await db.execute(sql`ALTER TABLE places ADD COLUMN IF NOT EXISTS lat real`);
   await db.execute(sql`ALTER TABLE places ADD COLUMN IF NOT EXISTS lng real`);
-  await db.execute(sql`ALTER TABLE places ADD COLUMN IF NOT EXISTS display_name text`);
-  await db.execute(sql`ALTER TABLE places ADD COLUMN IF NOT EXISTS is_anonymous boolean DEFAULT false`);
+  // score_history table
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS score_history (
+      id serial PRIMARY KEY,
+      place_id integer NOT NULL REFERENCES places(id) ON DELETE CASCADE,
+      final_score real NOT NULL,
+      recorded_at timestamp DEFAULT now()
+    )
+  `);
 }
 
 async function seedData() {
