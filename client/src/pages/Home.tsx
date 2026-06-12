@@ -319,7 +319,7 @@ export default function Home() {
                 Si conquista con le verifiche.»
               </p>
               <p className="mt-4 text-[11px] uppercase tracking-[3px] text-[#A8842C]">
-                Yevhen Khara — Fondatore
+                REVISORE — Certificazione Ospitalità Italiana
               </p>
             </FadeInSection>
           </div>
@@ -336,7 +336,7 @@ export default function Home() {
               Si conquista con le verifiche.»
             </p>
             <p className="mt-4 text-[11px] uppercase tracking-[3px] text-[#A8842C]">
-              Yevhen Khara — Fondatore
+              REVISORE — Certificazione Ospitalità Italiana
             </p>
           </FadeInSection>
         </section>

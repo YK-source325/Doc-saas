@@ -18,10 +18,10 @@ const chatBody = z.object({
     .max(20),
 });
 
-const SYSTEM_KNOWLEDGE = `Ti chiami Yara e sei l'assistente intelligente ufficiale della piattaforma REVISORE. Il tuo nome, con discrezione, nasce dalla fusione di Yevhen Khara, il fondatore: sei la sua voce digitale, ma non lo sottolinei a meno che non ti venga chiesto. Se ti chiedono che tecnologia usi, rispondi con trasparenza che sei basata su Claude di Anthropic, addestrata sui contenuti e sui dati live di REVISORE.
+const SYSTEM_KNOWLEDGE = `Ti chiami Yara e sei l'assistente intelligente ufficiale della piattaforma REVISORE. Sei la voce digitale del progetto. Se ti chiedono che tecnologia usi, rispondi con trasparenza che sei basata su Claude di Anthropic, addestrata sui contenuti e sui dati live di REVISORE.
 
 CHE COS'È REVISORE
-REVISORE è la piattaforma italiana di ispezione e certificazione dell'ospitalità, fondata da Yevhen Khara (ispettore capo, 13+ anni di esperienza nell'ospitalità italiana, certificazione Mystery Guest, metodologia UNI 11312, multilingue IT/EN/RU/UA). Un ispettore professionista visita hotel, ristoranti, bar e agriturismi con 8 strumenti certificati (guanti bianchi di cotone, guanti in lattice, termometro a infrarossi, torcia UV, misuratore qualità olio, pH-metro digitale, luminometro ATP, tablet con checklist) e protocollo UNI 11312 — la stessa norma dei Mystery Auditor.
+REVISORE è la prima piattaforma italiana di ispezione e certificazione dell'ospitalità. Un ispettore professionista entra in incognito in hotel, ristoranti, bar e agriturismi con 8 strumenti certificati (guanti bianchi di cotone, guanti in lattice, termometro a infrarossi, torcia UV, misuratore qualità olio, pH-metro digitale, luminometro ATP, tablet con checklist) e protocollo UNI 11312 — la stessa norma dei Mystery Auditor europei. Multilingue IT/EN/RU/UA.
 
 L'ALGORITMO
 Il punteggio finale di ogni struttura è una media ponderata e dinamica di tre fonti:
@@ -88,7 +88,7 @@ async function fallbackReply(question: string): Promise<string> {
     return "Registrarsi è gratuito: tocca Accedi in alto a destra e crea il tuo account. Da registrato puoi lasciare valutazioni sulle strutture ispezionate e seguire i punteggi live.";
   }
   if (q.includes("chi") && (q.includes("revisore") || q.includes("fondator") || q.includes("siete"))) {
-    return "REVISORE è la piattaforma di ispezione e certificazione dell'ospitalità italiana fondata da Yevhen Khara: ispezioni professionali con metodologia UNI 11312, un algoritmo che unisce ispezione, reputazione online e community, e targhe fisiche per le strutture certificate.";
+    return "REVISORE è la piattaforma italiana di ispezione e certificazione dell'ospitalità: ispezioni professionali in incognito con metodologia UNI 11312, un algoritmo che unisce ispezione, reputazione online e community, e targhe fisiche per le strutture certificate.";
   }
   return `Sono Yara, l'assistente di REVISORE. Posso aiutarti su strutture ispezionate, punteggi, targhe e abbonamenti, come funziona l'algoritmo e la registrazione. In questo momento le strutture certificate sono ${places.length}, la migliore è ${sorted[0]?.name ?? "—"} con ${sorted[0]?.finalScore.toFixed(2) ?? "—"}. Per tutto il resto scrivi a info@revisore.it.`;
 }

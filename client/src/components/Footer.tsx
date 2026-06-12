@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
         <Logo />
         <p className="text-[11px] uppercase tracking-[3px] text-[#141414]/40 text-center">
-          Yevhen Khara © 2026 — Certificazione Ospitalità Italiana
+          REVISORE © 2026 — Certificazione Ospitalità Italiana
         </p>
         <a
           href="mailto:info@revisore.it"

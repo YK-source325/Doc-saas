@@ -198,7 +198,7 @@ export const TRAILER_SCENES: CineScene[] = [
     7000,
     <TextScene
       title="REVISORE"
-      subtitle="Fondato da Yevhen Khara. La certificazione dell'ospitalità italiana inizia ora."
+      subtitle="La certificazione dell'ospitalità italiana. Ispezione umana, intelligenza artificiale, punteggio pubblico."
       kicker="2026"
     />
   ),
@@ -296,7 +296,7 @@ export const MEDIA_VIDEOS: MediaVideo[] = [
     description: "La squadra REVISORE: ispezione, video, piattaforma. Le truppe dietro il progetto.",
     scenes: [
       S(5000, <TextScene kicker="La squadra" title="LA BRIGATA" subtitle="Dietro ogni episodio, una squadra che lavora come una brigata di cucina." visual={<TeamVisual className="w-56 md:w-72" />} />),
-      S(6000, <TextScene kicker="Il fondatore" title="YEVHEN KHARA" subtitle="Ispettore capo. 13+ anni nell'ospitalità italiana, certificazione Mystery Guest, metodologia UNI 11312." visual={<ShieldVisual className="w-20" />} />),
+      S(6000, <TextScene kicker="L'ispettore" title="IL REVISORE" subtitle="Ispettore capo in incognito. 13+ anni nell'ospitalità italiana, certificazione Mystery Guest, metodologia UNI 11312." visual={<ShieldVisual className="w-20" />} />),
       S(6000, <TextScene kicker="I ruoli" title="OGNUNO AL SUO POSTO" subtitle="Operatore video, montatore, sviluppo piattaforma, relazioni con le strutture. La brigata cresce con il progetto." />),
     ],
     storyboard: [

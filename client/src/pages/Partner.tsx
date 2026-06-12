@@ -129,7 +129,7 @@ export default function Partner() {
           href="mailto:info@revisore.it?subject=Proposta%20Partner%20REVISORE"
           className="mt-6 inline-block px-8 py-4 bg-[#A8842C] text-white font-bold uppercase tracking-widest hover:bg-[#8F6F25] transition-colors"
         >
-          Contatta il Fondatore →
+          Contatta il Team REVISORE →
         </a>
       </FadeInSection>
     </div>

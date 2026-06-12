@@ -146,7 +146,7 @@ export default function Accesso() {
             {mode === "register" && (
               <p className="text-[10px] text-[#141414]/40 leading-relaxed">
                 La registrazione crea un account utente gratuito. Gli accessi partner e sviluppatore
-                vengono assegnati direttamente dal fondatore.
+                vengono assegnati direttamente dal team REVISORE.
               </p>
             )}
           </form>
