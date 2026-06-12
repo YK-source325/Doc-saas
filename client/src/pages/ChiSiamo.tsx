@@ -5,24 +5,24 @@ const TAGS = ["UNI 11312", "HACCP", "Mystery Auditor", "13+ anni hospitality", "
 
 const PILLARS = [
   { num: "01", title: "TUTELA DEL CONSUMATORE", desc: "Informazione trasparente e verificata per chi sceglie dove mangiare e dormire." },
-  { num: "02", title: "VALORIZZAZIONE DELL'ECCELLENZA", desc: "Le strutture serie meritano visibilità. Il Revisore le trova e le celebra." },
-  { num: "03", title: "STANDARD PROFESSIONALI", desc: "Ispezioni secondo metodologia certificata UNI 11312 — la stessa dei Mystery Auditor." },
+  { num: "02", title: "VALORIZZAZIONE DELL'ECCELLENZA", desc: "Le strutture serie meritano visibilità. REVISORE le trova, le ispeziona e le celebra." },
+  { num: "03", title: "STANDARD PROFESSIONALI", desc: "Ispezioni secondo metodologia certificata UNI 11312 — la stessa dei Mystery Auditor europei." },
 ];
 
 const COUNTERS = [
-  { value: 8, label: "Strutture Ispezionate" },
-  { value: 4, label: "Targhe Attive" },
-  { value: 3, label: "Livelli di Struttura" },
-  { value: 1, label: "Ispettore Certificato" },
-  { value: 5, label: "Anni di Proiezione" },
+  { value: 1000, label: "Strutture nel database" },
+  { value: 8, label: "Strumenti certificati" },
+  { value: 3, label: "Livelli di certificazione" },
+  { value: 3, label: "Fonti di punteggio" },
+  { value: 5, label: "Anni di proiezione" },
 ];
 
 const TIMELINE = [
-  { date: "Aprile 2026", text: "Business plan completato. Marchio REVISORE libero in Italia e UE (TMview)." },
-  { date: "Maggio 2026", text: "Avvio piattaforma digitale. Prima ispezione pilota." },
-  { date: "Estate 2026", text: "Lancio canale YouTube. Prime 5 strutture Livello 1 certificate." },
+  { date: "Aprile 2026", text: "Business plan completato. Marchio REVISORE libero in Italia e UE (TMview). Piattaforma online." },
+  { date: "Estate 2026", text: "Lancio canale YouTube. Prime 5 strutture Livello 1 certificate con targa fisica." },
   { date: "2027", text: "Espansione nazionale. Certificazione AMAI UNI 11312. Prime proposte a emittenti TV." },
   { date: "2028", text: "REVISORE riconosciuto a livello nazionale. Accordo emittente. Versione internazionale." },
+  { date: "2029+", text: "Il brand dell'ospitalità certificata in Europa. Formato televisivo esportabile." },
 ];
 
 const CERTIFICATIONS = [
@@ -66,42 +66,40 @@ export default function ChiSiamo() {
       {/* HERO */}
       <section className="py-28 text-center max-w-4xl mx-auto">
         <FadeInSection>
-          <h1 className="font-serif font-semibold text-6xl sm:text-8xl text-[#141414]">CHI SIAMO</h1>
-          <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#141414]/70">
-            REVISORE nasce dall'incontro tra rigore ispettivo professionale e la potenza della
-            comunicazione digitale.
+          <h1 className="font-serif font-semibold text-6xl sm:text-8xl text-[#141414]">IL PROGETTO</h1>
+          <p className="mt-6 font-serif italic text-xl sm:text-2xl text-[#141414]/70 max-w-2xl mx-auto leading-relaxed">
+            REVISORE è la prima piattaforma italiana di ispezione e certificazione
+            dell'ospitalità — ispezione umana, intelligenza artificiale, punteggio pubblico.
           </p>
         </FadeInSection>
       </section>
 
-      {/* PROFILO FONDATORE */}
+      {/* MANIFESTO */}
       <section className="max-w-6xl mx-auto">
         <FadeInSection>
-          <div className="border border-black/10 p-8 sm:p-12 grid grid-cols-1 md:grid-cols-12 gap-10 items-center bg-white">
-            <div className="md:col-span-4 flex justify-center">
-              <div className="w-56 h-56 rounded-full bg-white border-2 border-[#A8842C] flex items-center justify-center">
-                <span className="font-brand text-7xl text-[#A8842C]">YK</span>
-              </div>
-            </div>
-            <div className="md:col-span-8">
-              <h2 className="font-serif font-semibold text-4xl sm:text-5xl text-[#141414]">YEVHEN KHARA</h2>
-              <p className="mt-1 font-serif italic text-xl text-[#141414]/70">Fondatore & Ispettore Capo</p>
-              <p className="mt-5 text-[#141414]/70 leading-relaxed">
-                Con oltre 13 anni di esperienza nell'ospitalità italiana, Yevhen Khara ha lavorato in
-                ristoranti stellati, hotel di lusso e strutture ricettive d'eccellenza. Multilingue
-                (IT/EN/RU/UA), combina la visione dell'insider con la precisione del professionista
-                certificato.
+          <div className="border border-black/10 p-10 sm:p-14 bg-white grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div>
+              <p className="text-[11px] uppercase tracking-[3px] text-[#A8842C] mb-4">Il Manifesto</p>
+              <h2 className="font-serif font-semibold text-4xl sm:text-5xl text-[#141414] leading-tight">
+                C'è chi lo sa.<br />
+                C'è chi lo nasconde.<br />
+                Noi lo mostriamo.
+              </h2>
+              <p className="mt-6 text-[#141414]/60 leading-relaxed font-serif italic">
+                Un ispettore professionista entra in incognito. Guanti bianchi, strumenti certificati,
+                protocollo UNI 11312. Il punteggio finale non si compra — si guadagna.
+                E la targa vale solo finché il punteggio la difende.
               </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {TAGS.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-[#A8842C]/10 border border-black/15 text-[#A8842C] text-[10px] tracking-widest uppercase"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            </div>
+            <div className="flex flex-col gap-3">
+              {TAGS.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-4 py-3 bg-[#A8842C]/05 border border-black/10 text-[#A8842C] text-xs tracking-widest uppercase"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </FadeInSection>
@@ -200,6 +198,9 @@ export default function ChiSiamo() {
       <section className="py-20 pb-28 max-w-6xl mx-auto">
         <FadeInSection className="text-center">
           <h2 className="font-serif font-semibold text-5xl text-[#141414]">Kit di Ispezione</h2>
+          <p className="mt-4 font-serif italic text-[#141414]/50 text-lg">
+            Otto strumenti certificati. Un protocollo. Nessuna improvvisazione.
+          </p>
         </FadeInSection>
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {KIT.map((tool, i) => (

@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import type { User } from "../types";
 
 const inputClass =
-  "w-full bg-[#FAF8F4] border border-black/15 px-4 py-3 text-sm text-[#141414] focus:border-[#A8842C] focus:outline-none";
+  "w-full bg-[#FAF8F4] border border-black/15 px-4 py-3 text-[#141414] focus:border-[#A8842C] focus:outline-none";
 
 const AREAS = [
   { title: "UTENTI", desc: "Valuta le strutture e segui i punteggi live dal tuo account personale." },
@@ -103,6 +103,7 @@ export default function Accesso() {
                   onChange={(e) => setName(e.target.value)}
                   className={`mt-2 ${inputClass}`}
                   autoComplete="name"
+                  style={{ fontSize: "16px" }}
                 />
               </div>
             )}
@@ -115,6 +116,8 @@ export default function Accesso() {
                 onChange={(e) => setEmail(e.target.value)}
                 className={`mt-2 ${inputClass}`}
                 autoComplete="email"
+                inputMode="email"
+                style={{ fontSize: "16px" }}
               />
             </div>
             <div>
@@ -129,13 +132,14 @@ export default function Accesso() {
                 onChange={(e) => setPassword(e.target.value)}
                 className={`mt-2 ${inputClass}`}
                 autoComplete={mode === "register" ? "new-password" : "current-password"}
+                style={{ fontSize: "16px" }}
               />
             </div>
             {error && <p className="text-sm text-[#ef4444]">{error}</p>}
             <button
               type="submit"
               disabled={pending}
-              className="w-full px-8 py-3 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#A8842C] transition-colors disabled:opacity-50"
+              className="w-full px-8 py-4 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#A8842C] active:bg-[#A8842C] transition-colors disabled:opacity-50 touch-manipulation"
             >
               {pending
                 ? "Un istante..."
@@ -146,7 +150,7 @@ export default function Accesso() {
             {mode === "register" && (
               <p className="text-[10px] text-[#141414]/40 leading-relaxed">
                 La registrazione crea un account utente gratuito. Gli accessi partner e sviluppatore
-                vengono assegnati direttamente dal fondatore.
+                vengono assegnati direttamente dal team REVISORE.
               </p>
             )}
           </form>

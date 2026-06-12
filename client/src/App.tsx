@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Places from "./pages/Places";
 import PlaceDetail from "./pages/PlaceDetail";
+import Privacy from "./pages/Privacy";
 import Dashboard from "./pages/Dashboard";
 import Targhe from "./pages/Targhe";
 import ChiSiamo from "./pages/ChiSiamo";
@@ -33,8 +34,12 @@ export default function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/places" element={<Places />} />
+            <Route path="/places" element={<Navigate to="/strutture" replace />} />
+            <Route path="/strutture" element={<Places />} />
+            <Route path="/strutture/:id" element={<PlaceDetail />} />
             <Route path="/places/:id" element={<PlaceDetail />} />
+            <Route path="/mappa" element={<Places defaultView="map" />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/targhe" element={<Targhe />} />
             <Route path="/abbonamenti" element={<Abbonamenti />} />

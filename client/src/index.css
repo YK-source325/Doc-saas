@@ -7,6 +7,39 @@ html {
   color: #141414;
   font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
+  /* iOS momentum scroll */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent text size adjustment on orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  /* Prevent horizontal overflow/bounce on iOS */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  /* Respect iPhone notch / safe areas */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Safe area for fixed bottom elements (cookie banner, etc.) */
+.safe-area-bottom {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+/* Minimum 44px touch targets for all interactive elements */
+button, a, [role="button"] {
+  min-height: 36px;
+}
+
+/* Remove tap highlight on iOS */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent font boosting on Android */
+* {
+  max-height: 999999px;
 }
 
 .gold-grid {
@@ -35,12 +68,14 @@ input[type="range"].gold-slider {
   background: #E8E2D6;
   border-radius: 9999px;
   outline: none;
+  cursor: pointer;
+  touch-action: pan-x; /* iOS slider touch fix */
 }
 input[type="range"].gold-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 9999px;
   background: #c9a84c;
   border: 2px solid #FAF8F4;
@@ -48,8 +83,8 @@ input[type="range"].gold-slider::-webkit-slider-thumb {
   cursor: pointer;
 }
 input[type="range"].gold-slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 9999px;
   background: #c9a84c;
   border: 2px solid #FAF8F4;
@@ -162,9 +197,41 @@ input[type="range"].gold-slider::-moz-range-thumb {
 }
 .marquee-track:hover { animation-play-state: paused; }
 
+/* Ticker istituzionale — lento, leggibile */
+.marquee-track-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 110s linear infinite;
+}
+.marquee-track-slow:hover { animation-play-state: paused; }
+
 /* Bagliore editoriale di sfondo */
 .hero-glow {
   background:
     radial-gradient(ellipse 800px 500px at 85% 10%, rgba(168, 132, 44, 0.10), transparent 60%),
     radial-gradient(ellipse 600px 400px at 10% 90%, rgba(168, 132, 44, 0.06), transparent 60%);
 }
+
+/* Selezione testo — brand color */
+::selection {
+  background-color: rgba(168, 132, 44, 0.18);
+  color: #141414;
+}
+
+/* Scrollbar sottile (Chrome/Edge) */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(20, 20, 20, 0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(168, 132, 44, 0.4); }
+
+/* Separatori visivi */
+.section-rule {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #A8842C;
+  margin-bottom: 1.5rem;
+}
+
+/* Transizione link standard */
+a { transition: color 0.2s ease, border-color 0.2s ease; }

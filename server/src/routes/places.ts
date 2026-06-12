@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "../db.js";
-import { communityRatings, places } from "../schema.js";
+import { communityRatings, places, scoreHistory } from "../schema.js";
 import { WEIGHTS, computeOnlineScore } from "../scoring.js";
 import {
   enrichPlace,
@@ -27,13 +27,17 @@ async function loadEnrichedPlace(id: number) {
   return { row, ratings, enriched: enrichPlace(row, ratings.map((r) => r.score)) };
 }
 
-// GET /api/places?type=&city=&status=
+// GET /api/places?type=&city=&status=&sort=&minScore=
 router.get("/", async (req, res) => {
-  const { type, city, status } = req.query as Record<string, string | undefined>;
+  const { type, city, status, sort, minScore } = req.query as Record<string, string | undefined>;
   let result = await loadEnrichedPlaces();
-  if (type) result = result.filter((p) => p.type === type);
-  if (city) result = result.filter((p) => p.city.toLowerCase().includes(city.toLowerCase()));
-  if (status) result = result.filter((p) => p.plaqueStatus === status);
+  if (type)     result = result.filter((p) => p.type === type);
+  if (city)     result = result.filter((p) => p.city.toLowerCase().includes(city.toLowerCase()));
+  if (status)   result = result.filter((p) => p.plaqueStatus === status);
+  if (minScore) result = result.filter((p) => p.finalScore >= parseFloat(minScore));
+  if (sort === "score")  result = result.sort((a, b) => b.finalScore - a.finalScore);
+  else if (sort === "recent") result = result.sort((a, b) => b.createdAt!.getTime() - a.createdAt!.getTime());
+  else if (sort === "city")   result = result.sort((a, b) => a.city.localeCompare(b.city));
   res.json(result);
 });
 
@@ -43,7 +47,17 @@ router.get("/:id", async (req, res) => {
   if (!id.success) return void res.status(400).json({ error: "Id non valido" });
   const data = await loadEnrichedPlace(id.data);
   if (!data) return void res.status(404).json({ error: "Struttura non trovata" });
-  res.json({ ...data.enriched, recentRatings: data.ratings.slice(0, 10) });
+
+  // Map rating display names
+  const recentRatings = data.ratings.slice(0, 15).map((r) => ({
+    ...r,
+    authorName: r.isAnonymous
+      ? `Utente Verificato`
+      : r.displayName ?? r.authorName,
+    isVerified: r.userId !== null,
+  }));
+
+  res.json({ ...data.enriched, recentRatings });
 });
 
 // GET /api/places/:id/live-score
@@ -70,6 +84,18 @@ router.get("/:id/live-score", async (req, res) => {
   });
 });
 
+// GET /api/places/:id/score-history
+router.get("/:id/score-history", async (req, res) => {
+  const id = idParam.safeParse(req.params.id);
+  if (!id.success) return void res.status(400).json({ error: "Id non valido" });
+  const rows = await db
+    .select()
+    .from(scoreHistory)
+    .where(eq(scoreHistory.placeId, id.data))
+    .orderBy(scoreHistory.recordedAt);
+  res.json(rows);
+});
+
 // GET /api/places/:id/ratings
 router.get("/:id/ratings", async (req, res) => {
   const id = idParam.safeParse(req.params.id);
@@ -83,11 +109,13 @@ router.get("/:id/ratings", async (req, res) => {
 });
 
 const ratingBody = z.object({
-  score: z.number().min(1).max(5),
-  comment: z.string().max(300).optional(),
+  score:       z.number().min(1).max(5),
+  comment:     z.string().max(300).optional(),
+  displayName: z.string().max(60).optional(),
+  isAnonymous: z.boolean().optional().default(false),
 });
 
-// POST /api/places/:id/ratings — richiede login, authorName dall'account
+// POST /api/places/:id/ratings — richiede login
 router.post("/:id/ratings", requireAuth, async (req, res) => {
   const id = idParam.safeParse(req.params.id);
   if (!id.success) return void res.status(400).json({ error: "Id non valido" });
@@ -95,34 +123,63 @@ router.post("/:id/ratings", requireAuth, async (req, res) => {
   if (!body.success) {
     return void res.status(400).json({ error: "Dati non validi", details: body.error.flatten() });
   }
+
   const [place] = await db.select().from(places).where(eq(places.id, id.data));
   if (!place) return void res.status(404).json({ error: "Struttura non trovata" });
+
+  // Dedup: controlla se l'utente ha già valutato questa struttura
+  const existing = await db
+    .select({ id: communityRatings.id })
+    .from(communityRatings)
+    .where(
+      and(
+        eq(communityRatings.userId, req.user!.id),
+        eq(communityRatings.placeId, id.data)
+      )
+    );
+  if (existing.length > 0) {
+    return void res.status(409).json({ error: "Hai già valutato questa struttura." });
+  }
 
   const [created] = await db
     .insert(communityRatings)
     .values({
-      placeId: id.data,
-      score: body.data.score,
-      comment: body.data.comment ?? null,
-      authorName: req.user!.name,
-      userId: req.user!.id,
+      placeId:     id.data,
+      score:       body.data.score,
+      comment:     body.data.comment ?? null,
+      authorName:  req.user!.name,
+      displayName: body.data.displayName ?? null,
+      isAnonymous: body.data.isAnonymous,
+      userId:      req.user!.id,
     })
     .returning();
+
+  // Registra lo score history dopo ogni nuovo voto
+  const data = await loadEnrichedPlace(id.data);
+  if (data) {
+    await db.insert(scoreHistory).values({
+      placeId:    id.data,
+      finalScore: data.enriched.finalScore,
+    });
+  }
+
   res.status(201).json(created);
 });
 
 const placeBody = z.object({
-  name: z.string().min(1),
-  type: z.enum(["hotel", "restaurant", "bar", "agriturismo"]),
-  city: z.string().min(1),
-  address: z.string().min(1),
-  inspectedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  revisoreScore: z.number().min(0).max(5),
-  googleScore: z.number().min(0).max(5).nullable().optional(),
+  name:             z.string().min(1),
+  type:             z.enum(["hotel", "restaurant", "bar", "agriturismo"]),
+  city:             z.string().min(1),
+  address:          z.string().min(1),
+  inspectedAt:      z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  revisoreScore:    z.number().min(0).max(5),
+  googleScore:      z.number().min(0).max(5).nullable().optional(),
   tripadvisorScore: z.number().min(0).max(5).nullable().optional(),
-  plaqueStatus: z.enum(["active", "warning", "at_risk", "revoked"]).optional(),
-  plaqueIssuedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().optional(),
-  imageUrl: z.string().nullable().optional(),
+  plaqueStatus:     z.enum(["active", "warning", "at_risk", "revoked"]).optional(),
+  plaqueIssuedAt:   z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable().optional(),
+  imageUrl:         z.string().nullable().optional(),
+  lat:              z.number().nullable().optional(),
+  lng:              z.number().nullable().optional(),
 });
 
 // POST /api/places — solo developer
@@ -135,11 +192,13 @@ router.post("/", requireRole("developer"), async (req, res) => {
     .insert(places)
     .values({
       ...body.data,
-      googleScore: body.data.googleScore ?? null,
+      googleScore:      body.data.googleScore ?? null,
       tripadvisorScore: body.data.tripadvisorScore ?? null,
-      plaqueStatus: body.data.plaqueStatus ?? "active",
-      plaqueIssuedAt: body.data.plaqueIssuedAt ?? body.data.inspectedAt,
-      imageUrl: body.data.imageUrl ?? null,
+      plaqueStatus:     body.data.plaqueStatus ?? "active",
+      plaqueIssuedAt:   body.data.plaqueIssuedAt ?? body.data.inspectedAt,
+      imageUrl:         body.data.imageUrl ?? null,
+      lat:              body.data.lat ?? null,
+      lng:              body.data.lng ?? null,
     })
     .returning();
   res.status(201).json(created);

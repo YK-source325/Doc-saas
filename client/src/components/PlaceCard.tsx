@@ -14,17 +14,20 @@ export default function PlaceCard({ place }: { place: EnrichedPlace }) {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/places/${place.id}`)}
-      className="bg-white border border-black/10 hover:border-[#A8842C]/60 p-6 cursor-pointer transition-colors flex flex-col"
+      onClick={() => navigate(`/strutture/${place.id}`)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && navigate(`/strutture/${place.id}`)}
+      className="bg-white border border-black/10 hover:border-[#A8842C]/60 active:border-[#A8842C] p-5 sm:p-6 cursor-pointer transition-colors flex flex-col select-none touch-manipulation"
     >
       <div className="flex items-start justify-between gap-3">
-        <h3 className="font-serif text-xl text-[#141414]">{place.name}</h3>
+        <h3 className="font-serif text-lg sm:text-xl text-[#141414] leading-snug">{place.name}</h3>
         <StatusBadge status={place.plaqueStatus} />
       </div>
       <p className="mt-1 text-xs text-[#141414]/50">
         {TYPE_LABELS[place.type] ?? place.type} · {place.city}
       </p>
-      <div className="my-6 flex flex-col items-center gap-2">
+      <div className="my-5 sm:my-6 flex flex-col items-center gap-2">
         <ScoreGauge score={place.finalScore} size={80} />
         <span className="text-[10px] tracking-widest text-[#141414]/40">LIVE SCORE</span>
       </div>
