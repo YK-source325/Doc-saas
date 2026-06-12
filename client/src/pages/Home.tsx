@@ -99,7 +99,7 @@ export default function Home() {
               <input
                 value={aiQuestion}
                 onChange={(e) => setAiQuestion(e.target.value)}
-                placeholder="Chiedi a Yara — la tua assistente REVISORE"
+                placeholder="Chiedi a Vera — la tua assistente REVISORE"
                 className="flex-1 bg-transparent px-1 py-3.5 sm:py-4 text-[13px] text-[#141414] placeholder:text-[#141414]/30 focus:outline-none"
                 style={{ fontSize: "16px" }}
               />

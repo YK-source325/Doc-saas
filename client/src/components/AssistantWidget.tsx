@@ -9,7 +9,7 @@ interface ChatMessage {
 const WELCOME: ChatMessage = {
   role: "assistant",
   content:
-    "Benvenuto, sono Yara, l'assistente di REVISORE. Conosco ogni struttura ispezionata, i punteggi live, le targhe e gli abbonamenti. Come posso aiutarti?",
+    "Benvenuta, benvenuto: sono Vera, l'assistente di REVISORE. Conosco ogni struttura ispezionata, i punteggi live, le targhe e gli abbonamenti. Come posso aiutarti?",
 };
 
 const SUGGESTIONS = [
@@ -97,7 +97,7 @@ export default function AssistantWidget() {
       {/* Pulsante flottante — su mobile sopra cookie banner */}
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Parla con Yara"
+        aria-label="Parla con Vera"
         className="fixed bottom-6 right-4 sm:right-6 z-[70] w-14 h-14 rounded-full bg-[#A8842C] text-white shadow-[0_4px_24px_rgba(201,168,76,0.55)] hover:bg-[#8F6F25] active:scale-95 transition-all flex items-center justify-center touch-manipulation"
       >
         {open ? (
@@ -131,7 +131,7 @@ export default function AssistantWidget() {
           <div className="px-5 py-4 border-b border-black/10 flex items-center gap-3 shrink-0">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <div className="flex-1">
-              <p className="font-serif font-semibold text-xl tracking-[1px] text-[#141414] leading-none">Yara</p>
+              <p className="font-serif font-semibold text-xl tracking-[1px] text-[#141414] leading-none">Vera</p>
               <p className="text-[10px] uppercase tracking-widest text-[#141414]/40 mt-1">
                 Assistente REVISORE · risponde in tempo reale
               </p>
