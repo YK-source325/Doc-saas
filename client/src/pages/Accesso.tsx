@@ -135,7 +135,7 @@ export default function Accesso() {
             <button
               type="submit"
               disabled={pending}
-              className="w-full px-8 py-3 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#F0EADB] transition-colors disabled:opacity-50"
+              className="w-full px-8 py-3 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#A8842C] transition-colors disabled:opacity-50"
             >
               {pending
                 ? "Un istante..."

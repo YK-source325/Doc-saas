@@ -139,7 +139,7 @@ export default function Abbonamenti() {
                 </ul>
                 <button
                   onClick={() => choosePlan(plan.tier)}
-                  className="mt-8 w-full py-3 border text-xs font-bold uppercase tracking-widest transition-colors hover:bg-white hover:text-black hover:border-white"
+                  className="mt-8 w-full py-3 border text-xs font-bold uppercase tracking-widest transition-colors hover:bg-[#141414] hover:!text-white hover:border-[#141414]"
                   style={{ borderColor: plan.color, color: plan.color }}
                 >
                   Richiedi Ispezione
@@ -243,7 +243,7 @@ export default function Abbonamenti() {
               <button
                 type="submit"
                 disabled={submitRequest.isPending}
-                className="w-full px-8 py-4 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#F0EADB] transition-colors disabled:opacity-50"
+                className="w-full px-8 py-4 bg-[#141414] text-white font-bold uppercase tracking-widest hover:bg-[#A8842C] transition-colors disabled:opacity-50"
               >
                 {submitRequest.isPending ? "Invio in corso..." : "Invia la Richiesta"}
               </button>

@@ -116,7 +116,7 @@ export default function ChiSiamo() {
           {PILLARS.map((pillar, i) => (
             <FadeInSection key={pillar.num} delay={i * 150}>
               <div className="group bg-white border border-black/10 p-10 hover:border-[#A8842C]/60 transition-colors h-full">
-                <span className="inline-flex w-12 h-12 items-center justify-center border border-black/15 text-[#A8842C] font-brand text-2xl group-hover:bg-[#A8842C] group-hover:text-black transition-colors">
+                <span className="inline-flex w-12 h-12 items-center justify-center border border-black/15 text-[#A8842C] font-brand text-2xl group-hover:bg-[#A8842C] group-hover:text-white transition-colors">
                   {pillar.num}
                 </span>
                 <h3 className="mt-6 uppercase tracking-widest font-bold text-[#141414]">{pillar.title}</h3>

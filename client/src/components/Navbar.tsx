@@ -108,7 +108,7 @@ export default function Navbar() {
           ) : (
             <Link
               to="/accesso"
-              className="px-4 py-1.5 bg-[#141414] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#F0EADB] transition-colors"
+              className="px-4 py-1.5 bg-[#141414] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#A8842C] transition-colors"
             >
               Accedi
             </Link>
