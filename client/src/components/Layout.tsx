@@ -10,7 +10,12 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[#FAF8F4] text-[#141414] flex flex-col">
       <Navbar />
-      <main key={pathname} className="pt-16 flex-1 page-enter">
+      {/* pt-16 = navbar height. On iOS with black-translucent status bar, add env safe area top */}
+      <main
+        key={pathname}
+        className="pt-16 flex-1 page-enter"
+        style={{ paddingTop: "calc(4rem + env(safe-area-inset-top, 0px))" }}
+      >
         {children}
       </main>
       <Footer />

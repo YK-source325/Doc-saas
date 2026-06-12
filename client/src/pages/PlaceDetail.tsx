@@ -182,10 +182,10 @@ export default function PlaceDetail() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
       {toast && (
         <div
-          className={`fixed bottom-6 right-6 z-50 px-6 py-4 border bg-white text-sm tracking-wide ${
+          className={`fixed bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:w-auto z-50 px-5 py-4 border bg-white text-sm tracking-wide text-center sm:text-left ${
             toast.ok ? "border-[#22c55e] text-[#22c55e]" : "border-[#ef4444] text-[#ef4444]"
           }`}
         >
@@ -195,7 +195,7 @@ export default function PlaceDetail() {
 
       {/* HERO */}
       <FadeInSection>
-        <h1 className="font-brand text-5xl sm:text-7xl text-[#8F6F25] uppercase tracking-wide leading-none">
+        <h1 className="font-brand text-4xl sm:text-6xl lg:text-7xl text-[#8F6F25] uppercase tracking-wide leading-tight sm:leading-none">
           {p.name}
         </h1>
         <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -207,10 +207,10 @@ export default function PlaceDetail() {
       </FadeInSection>
 
       {/* PANNELLO SCORE */}
-      <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="mt-10 sm:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
         <FadeInSection>
           <p className="text-[10px] tracking-widest text-[#141414]/40">SCORE FINALE LIVE</p>
-          <p className="font-brand text-8xl text-[#8F6F25] leading-none mt-2">
+          <p className="font-brand text-7xl sm:text-8xl text-[#8F6F25] leading-none mt-2">
             {ls.finalScore.toFixed(2)}
           </p>
           <div className="mt-10 space-y-8">
@@ -275,8 +275,8 @@ export default function PlaceDetail() {
         ) : (
           <ul className="mt-6 divide-y divide-black/10">
             {p.recentRatings.map((r: any) => (
-              <li key={r.id} className="py-5 flex gap-4">
-                <span className="w-8 h-8 shrink-0 rounded-full bg-[#A8842C]/20 border border-black/15 flex items-center justify-center font-brand text-[#A8842C]">
+              <li key={r.id} className="py-4 sm:py-5 flex gap-3 sm:gap-4">
+                <span className="w-9 h-9 shrink-0 rounded-full bg-[#A8842C]/20 border border-black/15 flex items-center justify-center font-brand text-[#A8842C]">
                   {r.isAnonymous ? "?" : r.authorName.charAt(0)}
                 </span>
                 <div className="flex-1 min-w-0">
@@ -375,8 +375,9 @@ export default function PlaceDetail() {
                   value={comment}
                   onChange={(e) => setComment(e.target.value.slice(0, 300))}
                   rows={3}
-                  className="mt-2 w-full bg-[#FAF8F4] border border-black/15 px-4 py-3 text-sm text-[#141414] focus:border-[#A8842C] focus:outline-none"
+                  className="mt-2 w-full bg-[#FAF8F4] border border-black/15 px-4 py-3 text-[#141414] focus:border-[#A8842C] focus:outline-none"
                   placeholder="Racconta la tua esperienza..."
+                  style={{ fontSize: "16px" }}
                 />
                 <p className="mt-1 text-right text-[10px] text-[#141414]/30">{comment.length}/300</p>
               </div>
@@ -384,7 +385,7 @@ export default function PlaceDetail() {
               <button
                 type="submit"
                 disabled={postRating.isPending}
-                className="px-8 py-3 bg-[#A8842C] text-white font-bold uppercase tracking-widest hover:bg-[#8F6F25] transition-colors disabled:opacity-50"
+                className="w-full sm:w-auto px-8 py-4 bg-[#A8842C] text-white font-bold uppercase tracking-widest hover:bg-[#8F6F25] active:bg-[#8F6F25] transition-colors disabled:opacity-50 touch-manipulation"
               >
                 {postRating.isPending ? "Invio in corso..." : "Invia Valutazione"}
               </button>

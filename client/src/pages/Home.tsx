@@ -46,17 +46,17 @@ export default function Home() {
       <AlertBand />
 
       {/* HERO EDITORIALE */}
-      <section className="hero-glow relative min-h-[92vh] flex flex-col">
+      <section className="hero-glow relative min-h-[85vh] sm:min-h-[92vh] flex flex-col">
         <div className="flex-1 flex items-center">
-          <div className="max-w-6xl mx-auto px-6 w-full py-20">
-            <div className="flex items-center gap-4">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
-              <span className="text-[11px] tracking-[4px] text-[#141414]/50 uppercase">
-                Ispezione umana + intelligenza artificiale — monitoraggio live attivo
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-16 sm:py-20">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)] shrink-0" />
+              <span className="text-[10px] sm:text-[11px] tracking-[3px] sm:tracking-[4px] text-[#141414]/50 uppercase leading-relaxed">
+                Ispezione umana + AI — monitoraggio live attivo
               </span>
             </div>
 
-            <h1 className="mt-10 font-serif font-semibold text-[#141414] leading-[0.98] text-5xl sm:text-7xl md:text-[92px] max-w-4xl">
+            <h1 className="mt-8 sm:mt-10 font-serif font-semibold text-[#141414] leading-[0.95] text-[42px] sm:text-7xl md:text-[92px] max-w-4xl">
               L'eccellenza
               <br />
               non si dichiara.
@@ -64,13 +64,13 @@ export default function Home() {
               <em className="italic font-medium text-[#A8842C]">Si verifica.</em>
             </h1>
 
-            <p className="mt-8 max-w-xl text-base sm:text-lg text-[#141414]/55 leading-relaxed">
+            <p className="mt-6 sm:mt-8 max-w-xl text-base sm:text-lg text-[#141414]/55 leading-relaxed">
               Ispezioni professionali con metodologia UNI 11312, un'assistente intelligente — Yara —
               che vigila sui punteggi in tempo reale, e una targa che vale solo finché il punteggio la
               difende.
             </p>
 
-            {/* Barra AI in prima vista */}
+            {/* Barra AI */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -78,9 +78,9 @@ export default function Home() {
                 window.dispatchEvent(new CustomEvent("revisore-ask", { detail: value }));
                 setAiQuestion("");
               }}
-              className="mt-8 flex max-w-xl border border-black/20 bg-white focus-within:border-[#A8842C] transition-colors"
+              className="mt-7 sm:mt-8 flex max-w-xl border border-black/20 bg-white focus-within:border-[#A8842C] transition-colors"
             >
-              <span className="pl-4 pr-2 self-center">
+              <span className="pl-3 sm:pl-4 pr-2 self-center shrink-0">
                 <span className="px-1.5 py-0.5 border border-[#A8842C] text-[#A8842C] text-[9px] font-bold tracking-[2px]">
                   AI
                 </span>
@@ -88,29 +88,30 @@ export default function Home() {
               <input
                 value={aiQuestion}
                 onChange={(e) => setAiQuestion(e.target.value)}
-                placeholder="Chiedi a Yara: qual è la migliore struttura di Napoli?"
-                className="flex-1 bg-transparent px-2 py-4 text-sm text-[#141414] placeholder:text-[#141414]/35 focus:outline-none"
+                placeholder="Chiedi a Yara…"
+                className="flex-1 bg-transparent px-2 py-3 sm:py-4 text-sm text-[#141414] placeholder:text-[#141414]/35 focus:outline-none"
+                style={{ fontSize: "16px" }}
               />
               <button
                 type="submit"
-                className="px-5 text-[10px] font-bold uppercase tracking-[2px] text-white bg-[#A8842C] hover:bg-[#141414] transition-colors"
+                className="px-4 sm:px-5 text-[10px] font-bold uppercase tracking-[2px] text-white bg-[#A8842C] hover:bg-[#141414] active:bg-[#141414] transition-colors touch-manipulation shrink-0"
               >
                 Chiedi
               </button>
             </form>
 
-            <div className="mt-10 flex flex-wrap items-center gap-5">
+            <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-5">
               <Link
                 to="/strutture"
-                className="px-8 py-4 bg-[#141414] text-white text-xs font-bold uppercase tracking-[3px] hover:bg-[#A8842C] transition-colors"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-[#141414] text-white text-xs font-bold uppercase tracking-[3px] hover:bg-[#A8842C] active:bg-[#A8842C] transition-colors touch-manipulation"
               >
                 Esplora le Strutture
               </Link>
               <Link
                 to="/trailer"
-                className="group flex items-center gap-3 text-xs uppercase tracking-[3px] text-[#141414]/70 hover:text-[#141414] transition-colors"
+                className="group flex items-center gap-3 text-xs uppercase tracking-[3px] text-[#141414]/70 hover:text-[#141414] transition-colors py-2 touch-manipulation"
               >
-                <span className="w-10 h-10 rounded-full border border-black/20 group-hover:border-[#A8842C] flex items-center justify-center transition-colors">
+                <span className="w-10 h-10 rounded-full border border-black/20 group-hover:border-[#A8842C] flex items-center justify-center transition-colors shrink-0">
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 ml-0.5" fill="currentColor">
                     <path d="M7 5 L19 12 L7 19 Z" />
                   </svg>
@@ -119,18 +120,18 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* KPI con filetti */}
-            <div className="mt-16 grid grid-cols-3 max-w-2xl">
+            {/* KPI */}
+            <div className="mt-12 sm:mt-16 grid grid-cols-3 max-w-sm sm:max-w-2xl">
               {[
                 { value: stats.data?.totalInspected ?? 0, decimals: 0, label: "Strutture ispezionate", color: "text-[#141414]" },
                 { value: stats.data?.activePlaques ?? 0, decimals: 0, label: "Targhe attive", color: "text-[#22c55e]" },
-                { value: stats.data?.averageFinalScore ?? 0, decimals: 2, label: "Punteggio medio", color: "text-[#A8842C]" },
+                { value: stats.data?.averageFinalScore ?? 0, decimals: 2, label: "Score medio", color: "text-[#A8842C]" },
               ].map((kpi) => (
-                <div key={kpi.label} className="border-l border-black/15 pl-5 pr-4">
-                  <p className={`font-brand text-4xl sm:text-5xl ${kpi.color}`}>
+                <div key={kpi.label} className="border-l border-black/15 pl-4 sm:pl-5 pr-2 sm:pr-4">
+                  <p className={`font-brand text-3xl sm:text-5xl ${kpi.color}`}>
                     {stats.data ? <AnimatedCounter value={kpi.value} decimals={kpi.decimals} /> : "—"}
                   </p>
-                  <p className="mt-2 text-[10px] uppercase tracking-[2px] text-[#141414]/40">
+                  <p className="mt-1 sm:mt-2 text-[9px] sm:text-[10px] uppercase tracking-[2px] text-[#141414]/40 leading-tight">
                     {kpi.label}
                   </p>
                 </div>

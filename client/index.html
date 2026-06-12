@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!-- SEO base -->
     <meta name="description" content="REVISORE — Piattaforma italiana di ispezione e certificazione dell'ospitalità. Punteggi live, targhe verificate, AI assistente Yara." />
@@ -28,10 +28,17 @@
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#A8842C" />
+    <!-- PWA / iOS specifico -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="REVISORE" />
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192.png" />
+    <!-- Prevent phone number auto-detection -->
+    <meta name="format-detection" content="telephone=no" />
 
     <title>REVISORE — Certificazione Ospitalità Italiana</title>
 
