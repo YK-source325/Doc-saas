@@ -17,14 +17,18 @@ const TYPE_COLORS: Record<string, string> = {
   agriturismo: "#f59e0b",
 };
 
-export default function Places() {
+interface PlacesProps {
+  defaultView?: "grid" | "map";
+}
+
+export default function Places({ defaultView = "grid" }: PlacesProps) {
   const [cityInput, setCityInput] = useState("");
   const [city, setCity] = useState("");
   const [type, setType] = useState("");
   const [status, setStatus] = useState("");
-  const [sort, setSort] = useState("score");
+  const [sort, setSort] = useState<"score_desc" | "score_asc" | "name_asc" | "recent">("score_desc");
   const [minScore, setMinScore] = useState(0);
-  const [view, setView] = useState<"grid" | "map">("grid");
+  const [view, setView] = useState<"grid" | "map">(defaultView);
 
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -90,7 +94,7 @@ export default function Places() {
             <strong style="font-size:14px">${p.name}</strong><br/>
             <span style="font-size:12px;color:#555">${p.city} · ${p.type}</span><br/>
             <span style="font-size:13px;color:${color};font-weight:700">${p.finalScore.toFixed(2)} / 5</span>
-            <br/><a href="/places/${p.id}" style="color:#A8842C;font-size:12px;text-decoration:underline">Vedi scheda →</a>
+            <br/><a href="/strutture/${p.id}" style="color:#A8842C;font-size:12px;text-decoration:underline">Vedi scheda →</a>
           </div>
         `);
       markersRef.current.push(marker);
@@ -139,10 +143,11 @@ export default function Places() {
             <option value="warning">Attenzione</option>
             <option value="at_risk">A rischio</option>
           </select>
-          <select value={sort} onChange={(e) => setSort(e.target.value)} className={selectClass}>
-            <option value="score">Ordina per: Punteggio</option>
+          <select value={sort} onChange={(e) => setSort(e.target.value as "score_desc" | "score_asc" | "name_asc" | "recent")} className={selectClass}>
+            <option value="score_desc">Ordina per: Punteggio ↓</option>
+            <option value="score_asc">Ordina per: Punteggio ↑</option>
+            <option value="name_asc">Ordina per: Nome A–Z</option>
             <option value="recent">Ordina per: Più recenti</option>
-            <option value="city">Ordina per: Città A–Z</option>
           </select>
         </div>
 

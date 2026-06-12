@@ -254,7 +254,7 @@ export default function PlaceDetail() {
           <div className="mt-8 border border-black/10 bg-white p-5">
             <p className="text-[10px] uppercase tracking-widest text-[#141414]/40 mb-3">QR Targa</p>
             <img
-              src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(`https://revisore.vercel.app/places/${p.id}`)}&color=141414&bgcolor=FAF8F4`}
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(`https://revisore.vercel.app/strutture/${p.id}`)}&color=141414&bgcolor=FAF8F4`}
               alt="QR code struttura"
               className="w-24 h-24"
             />

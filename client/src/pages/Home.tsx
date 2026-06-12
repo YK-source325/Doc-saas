@@ -101,7 +101,7 @@ export default function Home() {
 
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <Link
-                to="/places"
+                to="/strutture"
                 className="px-8 py-4 bg-[#141414] text-white text-xs font-bold uppercase tracking-[3px] hover:bg-[#A8842C] transition-colors"
               >
                 Esplora le Strutture

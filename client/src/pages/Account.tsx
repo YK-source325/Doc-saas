@@ -19,11 +19,6 @@ interface MyRating {
   placeCity: string;
 }
 
-interface AccountStats {
-  totalRatings: number;
-  averageScore: number | null;
-  memberSince: string;
-}
 
 export default function Account() {
   const { user } = useAuth();
@@ -116,7 +111,7 @@ export default function Account() {
                   Non hai ancora valutato nessuna struttura.
                 </p>
                 <Link
-                  to="/places"
+                  to="/strutture"
                   className="mt-6 inline-block px-6 py-3 bg-[#A8842C] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#8F6F25] transition-colors"
                 >
                   Esplora le Strutture →

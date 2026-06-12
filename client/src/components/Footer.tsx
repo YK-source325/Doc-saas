@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -15,7 +16,29 @@ export default function Footer() {
           info@revisore.it
         </a>
       </div>
-      <p className="mt-8 text-center text-[10px] tracking-[2px] uppercase text-[#141414]/25 px-6">
+      <div className="mt-6 flex items-center justify-center gap-6">
+        <Link
+          to="/privacy"
+          className="text-[10px] uppercase tracking-[2px] text-[#141414]/40 hover:text-[#A8842C] transition-colors"
+        >
+          Privacy Policy
+        </Link>
+        <span className="text-[#141414]/20">·</span>
+        <Link
+          to="/privacy#cookie"
+          className="text-[10px] uppercase tracking-[2px] text-[#141414]/40 hover:text-[#A8842C] transition-colors"
+        >
+          Cookie Policy
+        </Link>
+        <span className="text-[#141414]/20">·</span>
+        <a
+          href="mailto:info@revisore.it"
+          className="text-[10px] uppercase tracking-[2px] text-[#141414]/40 hover:text-[#A8842C] transition-colors"
+        >
+          Contatti
+        </a>
+      </div>
+      <p className="mt-6 text-center text-[10px] tracking-[2px] uppercase text-[#141414]/25 px-6">
         Versione dimostrativa — strutture, punteggi e valutazioni sono dati di esempio, non reali.
       </p>
     </footer>

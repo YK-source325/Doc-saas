@@ -14,7 +14,7 @@ export default function PlaceCard({ place }: { place: EnrichedPlace }) {
   const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/places/${place.id}`)}
+      onClick={() => navigate(`/strutture/${place.id}`)}
       className="bg-white border border-black/10 hover:border-[#A8842C]/60 p-6 cursor-pointer transition-colors flex flex-col"
     >
       <div className="flex items-start justify-between gap-3">
