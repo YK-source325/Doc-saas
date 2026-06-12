@@ -197,6 +197,14 @@ input[type="range"].gold-slider::-moz-range-thumb {
 }
 .marquee-track:hover { animation-play-state: paused; }
 
+/* Ticker istituzionale — lento, leggibile */
+.marquee-track-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 110s linear infinite;
+}
+.marquee-track-slow:hover { animation-play-state: paused; }
+
 /* Bagliore editoriale di sfondo */
 .hero-glow {
   background:
